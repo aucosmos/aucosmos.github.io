@@ -1,107 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AUCOSMOS</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+.contact {
+  text-align: center;
 }
 
-body{
-font-family:'Inter',sans-serif;
-background:#0f1117;
-color:#f4f4f4;
-line-height:1.7;
+.contact p {
+  color: var(--muted);
 }
 
-.hero{
-height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-url('hero.jpg');
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:20px;
+.instagram {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 13px 22px;
+  background: var(--text);
+  color: #101211;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
 }
 
-.hero-content{
-max-width:800px;
+footer {
+  text-align: center;
+  padding: 34px 24px 46px;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
-.hero h1{
-font-size:4rem;
-letter-spacing:4px;
-margin-bottom:20px;
-}
+@media (max-width: 720px) {
+  .hero {
+    min-height: 72vh;
+    padding: 28px 22px;
+  }
 
-.hero p{
-font-size:1.4rem;
-opacity:.95;
-}
-
-section{
-max-width:1000px;
-margin:auto;
-padding:90px 24px;
-}
-
-h2{
-font-size:2rem;
-margin-bottom:25px;
-}
-
-.about p{
-font-size:1.1rem;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-margin-top:30px;
-}
-
-.card{
-background:#171b24;
-padding:24px;
-border-radius:18px;
-}
-
-.card h3{
-margin-bottom:12px;
-}
-
-.contact{
-text-align:center;
-}
-
-.instagram{
-display:inline-block;
-margin-top:20px;
-padding:14px 24px;
-background:white;
-color:black;
-text-decoration:none;
-border-radius:999px;
-font-weight:600;
-}
-
-footer{
-text-align:center;
-padding:40px;
-opacity:.6;
-font-size:.9rem;
+  .about {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -110,7 +41,7 @@ font-size:.9rem;
 
 <section class="hero">
 <div class="hero-content">
-<h1>AUCOSMOS</h1>
+<h1>aucosmos</h1>
 <p>Reflect Deeply. Build Meaningfully.</p>
 </div>
 </section>
@@ -119,7 +50,7 @@ font-size:.9rem;
 <h2>About</h2>
 
 <p>
-AUCOSMOS is a space for exploring the intersection of cognition,
+aucosmos is a space for exploring the intersection of cognition,
 faith, emerging technology, and human flourishing.
 
 Through research, reflection, and experimentation, I explore
@@ -127,6 +58,16 @@ neuroergonomics, cognitive psychology, immersive technologies,
 human-AI interaction, and the practice of tafakkur in a rapidly
 changing world.
 </p>
+</section>
+
+<section class="hadith" aria-label="Daily reminder">
+<div class="hadith-inner">
+<p class="hadith-label">Daily Reminder</p>
+<blockquote>
+"The most beloved deeds to Allah are those that are consistent, even if they are small."
+</blockquote>
+<p class="hadith-source">Prophet Muhammad ﷺ · Sahih al-Bukhari 6464; Sahih Muslim 783</p>
+</div>
 </section>
 
 <section>
@@ -204,7 +145,7 @@ target="_blank">
 </section>
 
 <footer>
-© 2026 AUCOSMOS
+© 2026 aucosmos
 </footer>
 
 </body>
