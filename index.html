@@ -1,393 +1,214 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+```html id="l4x7tw"
+<!-- 1. Add this inside your existing <nav> -->
+<a href="#moment-generator">Moment</a>
+```
 
-  <title>Aucosmos — Reflect Deeply. Build Meaningfully.</title>
-  <meta name="description" content="A reflective space exploring tafakkur, cognition, faith, AI, and immersive technology with sincerity and meaning." />
+```css id="g70rre"
+/* 2. Paste this before </style> */
 
-  <style>
-    :root {
-      --bg: #f7f1e8;
-      --paper: #fffaf2;
-      --text: #2f2a24;
-      --muted: #756b60;
-      --accent: #b88a5a;
-      --line: #e4d8c9;
-    }
+.moment-card {
+  margin-top: 24px;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+.moment-topic {
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
 
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
+.moment-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 18px;
+}
 
-    a {
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-    }
+.moment-reflection {
+  font-size: 1.15rem;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
 
-    .page {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 28px 20px 60px;
-    }
+.moment-source {
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 70px;
-      font-family: Arial, sans-serif;
-    }
+.moment-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
-    .logo {
-      font-size: 1.1rem;
-      letter-spacing: 0.08em;
-      text-transform: none;
-    }
+.generate-btn {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fffaf2;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-family: Arial, sans-serif;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
 
-    nav {
-      display: flex;
-      gap: 18px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
+.generate-btn:hover {
+  opacity: 0.9;
+}
 
-    nav a {
-      border-bottom: none;
-      color: var(--muted);
-    }
+.source-link {
+  font-family: Arial, sans-serif;
+  font-size: 0.92rem;
+}
 
-    .hero {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 44px;
-      align-items: center;
-      margin-bottom: 80px;
-    }
+.small-note {
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 18px;
+}
+```
 
-    .hero h1 {
-      font-size: clamp(3.2rem, 8vw, 6.8rem);
-      line-height: 0.95;
-      font-weight: 400;
-      letter-spacing: -0.05em;
-      margin-bottom: 24px;
-    }
+```html id="gn0m2r"
+<!-- 3. Paste this before the Daily Reminder section -->
 
-    .tagline {
-      font-family: Arial, sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 22px;
-    }
+<section id="moment-generator">
+  <div class="section-label">Tafakkur generator</div>
 
-    .intro {
-      font-size: 1.25rem;
-      max-width: 620px;
-      color: var(--muted);
-    }
+  <h2>Generate a Moment of Tafakkur</h2>
 
-    .hero-card {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 16px;
-      box-shadow: 0 24px 70px rgba(60, 45, 30, 0.08);
-    }
+  <p>
+    A small reflection prompt selected from a curated database of Qur’an
+    and authentic hadith references.
+  </p>
 
-    .hero-card img {
-      width: 100%;
-      display: block;
-      border-radius: 20px;
-      object-fit: cover;
-      aspect-ratio: 4 / 5;
-    }
+  <div class="soft-box moment-card" aria-live="polite">
+    <div class="moment-topic" id="momentTopic">Creation</div>
 
-    section {
-      margin-bottom: 72px;
-    }
+    <div class="moment-title" id="momentTitle">
+      Reflect on the heavens and the earth.
+    </div>
 
-    .section-label {
-      font-family: Arial, sans-serif;
-      font-size: 0.82rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
+    <p class="moment-reflection" id="momentReflection">
+      Step outside, look at the sky, and ask yourself: what does this creation
+      remind me about Allah’s wisdom, power, and mercy?
+    </p>
 
-    h2 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.1;
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      margin-bottom: 22px;
-    }
+    <div class="moment-source" id="momentSource">
+      Source: Qur’an 3:190–191
+    </div>
 
-    p {
-      font-size: 1.1rem;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
+    <div class="moment-actions">
+      <button class="generate-btn" onclick="generateTafakkurMoment()">
+        Generate another moment
+      </button>
 
-    .soft-box {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 32px;
-    }
+      <a
+        class="source-link"
+        id="momentLink"
+        href="https://quran.com/3/190-191"
+        target="_blank"
+        rel="noopener"
+      >
+        Open source
+      </a>
+    </div>
 
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 24px;
-    }
-
-    .pillar {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 26px;
-    }
-
-    .pillar h3 {
-      font-size: 1.5rem;
-      font-weight: 400;
-      margin-bottom: 10px;
-    }
-
-    .pillar p {
-      font-size: 1rem;
-      margin-bottom: 0;
-    }
-
-    .explorations {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 24px;
-    }
-
-    .exploration {
-      border-top: 1px solid var(--line);
-      padding-top: 20px;
-    }
-
-    .exploration h3 {
-      font-size: 1.35rem;
-      font-weight: 400;
-      margin-bottom: 8px;
-    }
-
-    .quote {
-      font-size: 1.45rem;
-      color: var(--text);
-      line-height: 1.6;
-      margin-bottom: 18px;
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding-top: 28px;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      font-family: Arial, sans-serif;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    footer a {
-      color: var(--muted);
-    }
-
-    @media (max-width: 760px) {
-      header {
-        align-items: flex-start;
-        flex-direction: column;
-        margin-bottom: 52px;
-      }
-
-      nav {
-        flex-wrap: wrap;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        margin-bottom: 64px;
-      }
-
-      .pillars,
-      .explorations {
-        grid-template-columns: 1fr;
-      }
-
-      footer {
-        flex-direction: column;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="page">
-    <header>
-      <div class="logo">Aucosmos</div>
-
-      <nav>
-        <a href="#tafakkur">Tafakkur</a>
-        <a href="#explore">Explore</a>
-        <a href="#connect">Connect</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div>
-          <div class="tagline">Reflect Deeply. Build Meaningfully.</div>
-
-          <h1>Aucosmos</h1>
-
-          <p class="intro">
-            A reflective space exploring faith, cognition, emerging technology,
-            and the practice of tafakkur in a rapidly changing world.
-          </p>
-        </div>
-
-        <div class="hero-card">
-          <img src="hero.jpg" alt="A warm sunset portrait for Aucosmos" />
-        </div>
-      </section>
-
-      <section id="tafakkur">
-        <div class="section-label">Moments of Tafakkur</div>
-
-        <div class="soft-box">
-          <h2>A moment to slow down, notice, and return meaning to what we usually scroll past.</h2>
-
-          <p>
-            Moments of Tafakkur is a series of short reflections on faith,
-            the mind, technology, and the signs around us.
-          </p>
-
-          <p>
-            Not to chase noise. Not to create for the sake of creating.
-            But to pause, reflect, and build with meaning.
-          </p>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-label">The foundation</div>
-
-        <h2>Reflect. Understand. Build.</h2>
-
-        <div class="pillars">
-          <div class="pillar">
-            <h3>Reflect</h3>
-            <p>
-              Faith, tafakkur, tawakkul, gratitude, and the search for meaning.
-            </p>
-          </div>
-
-          <div class="pillar">
-            <h3>Understand</h3>
-            <p>
-              Cognition, attention, learning, memory, psychology, and human flourishing.
-            </p>
-          </div>
-
-          <div class="pillar">
-            <h3>Build</h3>
-            <p>
-              AI, VR, mixed reality, and human-centered technology used with intention.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="explore">
-        <div class="section-label">Current explorations</div>
-
-        <h2>What I am exploring now</h2>
-
-        <div class="explorations">
-          <div class="exploration">
-            <h3>Faith & Reflection</h3>
-            <p>
-              Creating visual reflections around Islamic concepts, meaning,
-              and everyday reminders.
-            </p>
-          </div>
-
-          <div class="exploration">
-            <h3>Psychology & Cognition</h3>
-            <p>
-              Exploring how the mind learns, notices, remembers,
-              and makes meaning.
-            </p>
-          </div>
-
-          <div class="exploration">
-            <h3>Immersive Technology</h3>
-            <p>
-              Testing VR and mixed reality as tools for learning,
-              reflection, and human experience.
-            </p>
-          </div>
-
-          <div class="exploration">
-            <h3>AI & Human Flourishing</h3>
-            <p>
-              Asking how AI can extend curiosity without replacing sincere thought.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-label">Daily reminder</div>
-
-        <div class="soft-box">
-          <p class="quote">
-            “The most beloved deeds to Allah are those that are consistent,
-            even if they are small.”
-          </p>
-
-          <p>
-            Prophet Muhammad ﷺ<br />
-            Sahih al-Bukhari 6464; Sahih Muslim 783
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <footer id="connect">
-      <div>© 2026 Aucosmos</div>
-
-      <div>
-        Instagram:
-        <a href="https://instagram.com/aucosmos" target="_blank" rel="noopener">
-          @aucosmos
-        </a>
-      </div>
-    </footer>
+    <p class="small-note">
+      These prompts are for reflection, not fatwa. Always return to qualified
+      scholars for religious rulings.
+    </p>
   </div>
-</body>
-</html>
+</section>
+```
+
+```html id="vpq8jw"
+<!-- 4. Paste this before </body> -->
+
+<script>
+  const tafakkurMoments = [
+    {
+      topic: "Creation",
+      title: "Reflect on the heavens and the earth.",
+      reflection:
+        "Step outside, look at the sky, and ask yourself: what does this creation remind me about Allah’s wisdom, power, and mercy?",
+      source: "Qur’an 3:190–191",
+      link: "https://quran.com/3/190-191"
+    },
+    {
+      topic: "Time",
+      title: "Reflect on the alternation of night and day.",
+      reflection:
+        "Notice how day becomes night without your control. What does this teach you about dependence, rhythm, and returning to Allah?",
+      source: "Qur’an 3:190–191",
+      link: "https://quran.com/3/190-191"
+    },
+    {
+      topic: "Purpose",
+      title: "Reflect on the fact that nothing was created without purpose.",
+      reflection:
+        "Choose one ordinary thing near you and ask: what wisdom might exist here that I usually overlook?",
+      source: "Qur’an 3:191",
+      link: "https://quran.com/3/191"
+    },
+    {
+      topic: "Creation",
+      title: "Reflect on the sky, mountains, earth, and living beings.",
+      reflection:
+        "Look at the world around you slowly. Instead of rushing past it, let it become a reminder of the One who created and sustains it.",
+      source: "Qur’an 88:17–20",
+      link: "https://quran.com/88/17-20"
+    },
+    {
+      topic: "Consistency",
+      title: "Reflect on small deeds done consistently.",
+      reflection:
+        "What is one small good deed you can keep today without overwhelming yourself?",
+      source: "Sahih al-Bukhari 6465",
+      link: "https://sunnah.com/bukhari:6465"
+    },
+    {
+      topic: "Intention",
+      title: "Reflect on building with sincerity.",
+      reflection:
+        "Before creating, posting, studying, or working, pause and ask: who am I doing this for?",
+      source: "Connected to the principle of sincerity in worship and action",
+      link: "https://quran.com/98/5"
+    },
+    {
+      topic: "Knowledge",
+      title: "Reflect on useful worldly knowledge.",
+      reflection:
+        "Technology, tools, and skills can become meaningful when used with responsibility. How can what you are learning serve something good?",
+      source: "Sahih Muslim 2363",
+      link: "https://sunnah.com/muslim:2363"
+    },
+    {
+      topic: "Gratitude",
+      title: "Reflect on what you did not create, yet benefit from every day.",
+      reflection:
+        "Pick one blessing you usually treat as normal. Sit with it for ten seconds and say alhamdulillah with presence.",
+      source: "General Qur’anic theme of gratitude",
+      link: "https://quran.com/14/7"
+    }
+  ];
+
+  function generateTafakkurMoment() {
+    const randomIndex = Math.floor(Math.random() * tafakkurMoments.length);
+    const moment = tafakkurMoments[randomIndex];
+
+    document.getElementById("momentTopic").textContent = moment.topic;
+    document.getElementById("momentTitle").textContent = moment.title;
+    document.getElementById("momentReflection").textContent = moment.reflection;
+    document.getElementById("momentSource").textContent = "Source: " + moment.source;
+
+    const link = document.getElementById("momentLink");
+    link.href = moment.link;
+  }
+</script>
 ```
