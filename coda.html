@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>HEART DAY · The Organ Days · AUCOSMOS</title>
+<title>Coda · The Organ Days · AUCOSMOS</title>
 <meta content="Return to rhythm — The Organ Days, an AUCOSMOS experience." name="description"/>
 <style>
     :root { --bg:#0f1412; --bg-soft:#151b18; --text:#f3ead8; --muted:rgba(243,234,216,.72); --line:rgba(243,234,216,.16); --gold:#e9d8b8; --shadow:rgba(0,0,0,.35); }
@@ -58,99 +58,30 @@
 </head>
 <body>
 <main class="quiet-main">
-<section aria-labelledby="heart-day-title" class="day-section" id="heart-day">
-<div class="section-kicker">THE ORGAN DAYS</div>
-<h2 id="heart-day-title">HEART DAY</h2>
-<div class="day-body">
-<p><strong>I. WAKING — BEFORE I NOTICE</strong></p>
-<p>Before light. Before language. Before I remember the room, or the body, or the name I answer to when someone calls it — there is this.</p>
-<p>A beat.</p>
-<p>Then another.</p>
-<p>Not dramatic. Not symbolic. Not asking to be understood. Only continuing, quietly, with the patience of something that has been doing its work long before I learned to call it mine.</p>
-<p><strong>II. THE ORGAN THAT DOES NOT WAIT FOR PERMISSION</strong></p>
-<p>I am only heart today, and the first thing I understand is that the heart does not consult me. It does not wait for a decision. It does not ask whether I feel grateful enough to deserve another beat. It simply gives the next one, and the next, and the next — a mercy so constant I mistook it for background.</p>
-<p>Every other day, I noticed the world arriving through a doorway. Sound through the ear. Light through the eye. Thought through the mind. Words through the mouth. Today there is no doorway opening outward. Today the door opens inward, and behind it is a rhythm I have been living inside my whole life.</p>
-<p><strong>III. THE HEART HAS BEEN SPEAKING</strong></p>
-<p>I think back to Mind Day, to the moment I realized fear was not only a sentence. It had weight. Pressure. A tightening behind the ribs. I had called it thought because thought was the only language I was listening for. But the heart had been speaking underneath it all — quickening before I understood danger, softening before I admitted relief, aching before memory found the name of what I missed.</p>
-<p>Today I do not translate it too quickly. I let it beat without turning every pulse into meaning.</p>
-<p><strong>IV. THE RETURN</strong></p>
-<p>By the end of the day, the story stops trying to explain.</p>
-<p>No more ears. No more eyes. No more mind. No more mouth.</p>
-<p>Only this.</p>
-</div>
-<div aria-label="A quiet visual heartbeat for reflection" class="heart-stage">
-<div aria-hidden="true" class="heartbeat"></div>
-<p class="heart-instruction">Place a hand over your heart if you wish. Let the pulse on the screen remind you of the one already being carried inside you.</p>
-<div class="heart-controls">
-<button class="heart-button primary" id="start-heartbeat" type="button">Start soft heartbeat</button>
-<button class="heart-button" id="stop-heartbeat" type="button">Stop</button>
-</div>
-</div>
-<div class="day-body">
-<p>I do not follow the sound outward. I do not turn it immediately into thought. I do not name it beautiful just to keep it at a distance.</p>
-<p>I place my attention where it has been all along: inside the chest, where life keeps being given before I ask for it, before I notice it, before I know how to thank.</p>
-<p>The heart beats.</p>
-<p>And somewhere, quietly, mine answers.</p>
-</div>
-</section>
 
+<section aria-labelledby="coda-the-one-who-borrows-title" class="day-section" id="coda-the-one-who-borrows">
+<div class="section-kicker">THE ORGAN DAYS</div>
+<h2 id="coda-the-one-who-borrows-title">CODA — THE ONE WHO BORROWS</h2>
+<div class="day-body">
+<p>I spent a day as ears.<br/>
+    A day as eyes.<br/>
+    A day as a mind that discovered it was never alone to begin with.<br/>
+    A day as a mouth, speaking itself into being.<br/>
+    A day as a heart, returning everything to rhythm.</p>
+<p>And every day ended the same way —<br/>
+    with the quiet, particular realization<br/>
+    that I was never any of them.</p>
+<p>Only ever the one who was borrowing them,<br/>
+    one at a time,<br/>
+    to remember how to notice<br/>
+    being alive.</p>
+<p class="final-whisper">Go back to your heart.</p>
+</div>
+<div aria-hidden="true" class="heartbeat"></div>
+</section>
 <div class="quiet-return"><a data-transition="" href="organ-days.html">Return to the doors</a></div>
 </main>
-<script>
-    (() => {
-      const startButton = document.getElementById('start-heartbeat');
-      const stopButton = document.getElementById('stop-heartbeat');
-      let context = null;
-      let timer = null;
-      function playBeat() {
-        if (!context) return;
-        const now = context.currentTime;
-        const gain = context.createGain();
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(0.09, now + 0.018);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
-        gain.connect(context.destination);
-        const osc = context.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(82, now);
-        osc.frequency.exponentialRampToValueAtTime(48, now + 0.16);
-        osc.connect(gain);
-        osc.start(now);
-        osc.stop(now + 0.19);
-        setTimeout(() => {
-          if (!context) return;
-          const now2 = context.currentTime;
-          const gain2 = context.createGain();
-          gain2.gain.setValueAtTime(0.0001, now2);
-          gain2.gain.exponentialRampToValueAtTime(0.045, now2 + 0.014);
-          gain2.gain.exponentialRampToValueAtTime(0.0001, now2 + 0.13);
-          gain2.connect(context.destination);
-          const osc2 = context.createOscillator();
-          osc2.type = 'sine';
-          osc2.frequency.setValueAtTime(70, now2);
-          osc2.frequency.exponentialRampToValueAtTime(45, now2 + 0.12);
-          osc2.connect(gain2);
-          osc2.start(now2);
-          osc2.stop(now2 + 0.14);
-        }, 220);
-      }
-      function startHeartbeat() {
-        if (!context) context = new (window.AudioContext || window.webkitAudioContext)();
-        if (context.state === 'suspended') context.resume();
-        if (timer) clearInterval(timer);
-        playBeat();
-        timer = setInterval(playBeat, 1450);
-      }
-      function stopHeartbeat() {
-        if (timer) clearInterval(timer);
-        timer = null;
-      }
-      if (startButton && stopButton) {
-        startButton.addEventListener('click', startHeartbeat);
-        stopButton.addEventListener('click', stopHeartbeat);
-      }
-    })();
-  </script>
+
 <script>
   (() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
