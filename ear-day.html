@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Organ Days · AUCOSMOS</title>
-<meta name="description" content="A literary-sensory experience on attention, perception, thought, speech, and the heart." />
+<title>EAR DAY · The Organ Days · AUCOSMOS</title>
+<meta name="description" content="Attention through sound — The Organ Days, an AUCOSMOS experience." />
 <style>
     :root { --bg:#0f1412; --bg-soft:#151b18; --text:#f3ead8; --muted:rgba(243,234,216,.72); --line:rgba(243,234,216,.16); --gold:#e9d8b8; --shadow:rgba(0,0,0,.35); }
     * { box-sizing:border-box; } html { scroll-behavior:smooth; }
@@ -24,7 +24,7 @@
     .intro-note { max-width:860px; margin:0 auto; padding:0 22px 76px; color:var(--muted); text-align:center; font-size:1.05rem; }
     .doors { max-width:1180px; margin:0 auto; padding:40px 22px 96px; } .doors h2 { font-size:clamp(2.4rem,6vw,5rem); margin:0 0 14px; } .doors>p { color:var(--muted); max-width:700px; margin:0 0 30px; }
     .door-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; } .door-card { min-height:190px; border:1px solid var(--line); border-radius:26px; padding:26px; text-decoration:none; background:linear-gradient(135deg,rgba(255,255,255,.052),rgba(255,255,255,.018)); box-shadow:0 22px 70px var(--shadow); transition:transform 180ms ease,border-color 180ms ease,background 180ms ease; display:flex; flex-direction:column; justify-content:space-between; } .door-card:hover { transform:translateY(-3px); border-color:rgba(233,216,184,.38); background:linear-gradient(135deg,rgba(233,216,184,.08),rgba(255,255,255,.018)); } .door-label { display:block; font-family:Georgia,'Times New Roman',serif; font-size:clamp(1.55rem,3vw,2.4rem); line-height:1.08; } .door-desc { display:block; color:var(--muted); margin-top:24px; font-size:.98rem; }
-    .day-section { max-width:900px; margin:0 auto; padding:92px 22px; border-top:1px solid var(--line); } .section-kicker { letter-spacing:.24em; font-size:.7rem; color:rgba(243,234,216,.55); margin-bottom:18px; } .day-section h2 { font-size:clamp(2.4rem,7vw,5.6rem); line-height:.95; margin:0 0 42px; }
+    .day-section { max-width:900px; margin:0 auto; padding:108px 22px 92px; border-top:1px solid var(--line); } .section-kicker { letter-spacing:.24em; font-size:.7rem; color:rgba(243,234,216,.55); margin-bottom:18px; } .day-section h2 { font-size:clamp(2.4rem,7vw,5.6rem); line-height:.95; margin:0 0 42px; }
     .day-body { font-family:Georgia,'Times New Roman',serif; font-size:clamp(1.12rem,2vw,1.38rem); color:rgba(243,234,216,.9); } .day-body h2,.day-body h3 { font-size:clamp(1.2rem,2.5vw,1.7rem); margin-top:44px; letter-spacing:.02em; } .day-body p { margin:0 0 1.35em; } .day-body em { color:#fff4df; } .day-body hr { border:0; border-top:1px solid var(--line); margin:64px 0; } .section-return { margin-top:46px; font-size:.92rem; color:var(--muted); } .section-return a { text-decoration:none; border-bottom:1px solid var(--line); }
     .heartbeat { width:min(360px,74vw); height:120px; margin:42px auto 0; position:relative; opacity:.78; } .heartbeat::before { content:""; position:absolute; inset:0; border-radius:50%; border:1px solid rgba(233,216,184,.35); animation:pulse 1.45s ease-in-out infinite; } .heartbeat::after { content:""; position:absolute; left:50%; top:50%; width:18px; height:18px; border-radius:50%; background:var(--gold); transform:translate(-50%,-50%); box-shadow:0 0 50px rgba(233,216,184,.45); animation:dot 1.45s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{transform:scale(.72);opacity:.18} 18%{transform:scale(.86);opacity:.65} 30%{transform:scale(.78);opacity:.38} 46%{transform:scale(1);opacity:.18} } @keyframes dot { 0%,100%{transform:translate(-50%,-50%) scale(.8)} 18%{transform:translate(-50%,-50%) scale(1.22)} 30%{transform:translate(-50%,-50%) scale(.92)} 46%{transform:translate(-50%,-50%) scale(1.05)} }
@@ -56,18 +56,45 @@
 </style>
 </head>
 <body>
-<nav class="site-nav"><div class="site-nav-inner"><a class="brand" href="index.html">AUCOSMOS</a><div class="nav-links"><a href="organ-days.html">Organ Days</a><a href="index.html">Home</a></div></div></nav>
-<header class="hero" id="top"><div class="hero-content"><div class="eyebrow">AUCOSMOS EXPERIENCE</div><h1>The Organ Days</h1><p class="subtitle">A literary-sensory reflection on attention, perception, thought, speech, and the quiet miracle of being alive.</p><div class="hero-actions"><a class="button primary" href="#doors">Choose a door</a><a class="button" href="index.html">Back to AUCOSMOS</a></div></div></header>
-<main>
-<section class="doors" id="doors" aria-labelledby="doors-title"><h2 id="doors-title">Choose a door.</h2><p class="entry-note">One organ. One doorway. One quiet room at a time. The two Mind Day doors are meant to answer each other: one sealed, one flooded. Choose either first.</p><div class="door-grid"><a class="door-card" data-transition href="ear-day.html"><span class="door-label">EAR DAY</span><span class="door-desc">Attention through sound.</span></a>
-<a class="door-card" data-transition href="eyes-day.html"><span class="door-label">EYES DAY</span><span class="door-desc">Perception through light.</span></a>
-<a class="door-card" data-transition href="mind-sealed.html"><span class="door-label">MIND DAY — FACET ONE</span><span class="door-desc">The sealed room.</span></a>
-<a class="door-card" data-transition href="mind-flooded.html"><span class="door-label">MIND DAY — FACET TWO</span><span class="door-desc">Everything, all at once.</span></a>
-<a class="door-card" data-transition href="mouth-day.html"><span class="door-label">MOUTH DAY</span><span class="door-desc">Speech, taste, and the weight of words.</span></a>
-<a class="door-card" data-transition href="heart-day.html"><span class="door-label">HEART DAY</span><span class="door-desc">Return to rhythm.</span></a></div></section>
+<main class="quiet-main">
+<section class="day-section" id="ear-day" aria-labelledby="ear-day-title">
+  <div class="section-kicker">THE ORGAN DAYS</div>
+  <h2 id="ear-day-title">EAR DAY</h2>
+  <div class="day-body"><p><strong>I. WAKING</strong></p>
+<p>Darkness first — always darkness, since I am not eyes today. But sound arrives before light ever could. The low hum of the refrigerator, three rooms away, is the first thing I am. A distant hum, patient, mechanical, the closest thing to a heartbeat this house has. Then birds — not one, but a layering, a chorus without rehearsal, each voice indifferent to the others yet somehow in agreement. I did not know silence had a texture until I heard it broken this precisely.</p>
+<p>I become aware that I have been hearing all night without knowing it — the creak of the house settling, a car passing far off, someone's dog answering another dog three streets over. Sleep was never silent. I only thought it was.</p>
+<p><strong>II. THE BODY WAKING</strong></p>
+<p>The shift of sheets is enormous now — a landscape of friction, a hundred small sounds I'd have called &quot;nothing&quot; before. My own breath is the loudest thing I own. In, a soft draw like wind through a cracked window. Out, a release, unhurried. I hear my own pulse in the pillow, a wet, private rhythm, and it startles me — how had I never noticed I am always drumming?</p>
+<p>Footsteps on the floor. Mine. Each one a small percussion, different depending on the surface — wood, tile, the muffled hush of a rug. I am learning the house by weight and material, the way it answers me back.</p>
+<p><strong>III. MORNING RITUAL</strong></p>
+<p>Water from the tap — a bright, cascading rush, then the particular gurgle of the drain swallowing it. The kettle's low moan building to a whistle, urgent, almost pleading, then silenced by a hand I cannot see. A spoon against ceramic, small and bright, like a bell struck once and forgotten.</p>
+<p>Voices now — someone else is awake. Their words arrive not as meaning first, but as music: pitch, rhythm, the rise of a question, the flat certainty of a statement. I notice, for the first time, how much of what we say is carried not in words but in the shape of the sound around them. Love, irritation, tiredness — all audible before they are ever said aloud.</p>
+<p><strong>IV. LEAVING THE HOUSE</strong></p>
+<p>The door's complaint as it opens. Outside is louder, wider, less considerate. Traffic is not one sound but hundreds, overlapping, a texture rather than an event — tires, engines, a horn somewhere insistent and brief. A siren rises and falls, and I feel it pass through me almost physically, a sound with a body of its own, urgent, unresolved, trailing into the distance until it belongs to someone else's day and not mine.</p>
+<p>Footsteps other than my own now — strangers, a hundred small rhythms, some hurried, some idle. Fragments of conversation drift past, cut off before they resolve, and I find myself grieving each one, these little stories I'll never hear the end of.</p>
+<p><strong>V. MIDDAY — THE CROWDED HOUR</strong></p>
+<p>A place full of people — a café, maybe, or an office. The sound is dense here, layered like sediment: laughter cutting through low conversation, the clatter of cups, a chair dragged across a floor, someone's phone vibrating against a table before it's silenced. I realize how much of being human is simply this — the constant low static of other people existing near you.</p>
+<p>Somewhere, someone is crying, quietly, trying not to be heard. And I hear it anyway. I carry it a moment, a stranger's grief passing through me uninvited, and I understand something about eavesdropping I never had language for before — that hearing is not always consent, and yet it is rarely cruelty either. It's just proximity.</p>
+<p><strong>VI. THE WEIGHT OF IT — HEARING HAS NO EYELIDS</strong></p>
+<p>And then, without warning, too much at once. A truck brakes too hard, a long tearing shriek of rubber. A child screams, delighted or terrified, I can't tell which and the not-knowing makes it worse. Somewhere behind me a tray drops, a hundred small metal voices shouting at the same moment. For a few seconds the world doesn't arrive in layers anymore — it arrives all at once, indiscriminate, a flood with no order to it.</p>
+<p>I understand something I hadn't before: eyes can close. Eyes get to choose, blink, look away, rest in their own dark. Ears have no eyelids. There is no closing this door, no turning from a sound the way you'd turn from a sight that hurts to look at. I have been open this entire day, whether I wanted to be or not, and I only notice the openness now that it's become too much to hold.</p>
+<p>It passes. The room settles back into its layers. But something in me stays a little more tender toward every sound after that, the way a bruise stays aware of itself long after the impact.</p>
+<p><strong>VII. AFTERNOON — A MOMENT OF SILENCE</strong></p>
+<p>And then, briefly — nothing. Or what passes for nothing. Alone somewhere, a room with the windows closed. I search for sound the way a tongue searches for a missing tooth. The absence is loud in its own way — a ringing, faint, that might be inside me and might be the world's own low frequency. I notice my own swallow. My own blink, somehow, has a sound, or the ghost of one. Silence is not empty. It's just quieter company.</p>
+<p>I think: this is the first time all day I have heard myself think, if thinking has a sound. Maybe it does. Maybe it always has, and I simply drowned it out before.</p>
+<p><strong>VIII. EVENING — MUSIC</strong></p>
+<p>Someone plays something — a song, maybe from a phone, maybe live. A single instrument at first, then a voice joining it, imperfect, human, cracking slightly on a high note in a way that makes it more true rather than less. I feel the pull of melody differently now, unable to look away by looking elsewhere. There is nowhere for a sound to hide from me, and nowhere for me to hide from it either.</p>
+<p>I recognize a song from childhood, and it isn't the melody that undoes me — it's a specific texture in the recording, a hiss of tape, a room tone from decades ago, and it carries a whole house, a whole family, a version of myself I'd forgotten, all folded into three minutes of sound.</p>
+<p><strong>IX. NIGHT — CLOSING</strong></p>
+<p>The house quiets by degrees. Dishes, water, a door closing softer than the one this morning. Voices lower, as if the dark asks for less volume, and is obeyed. Someone says goodnight, and the words matter less than the tone — tenderness has a specific frequency, and I hear it plainly now, a thing I might have missed entirely with eyes open, distracted by faces.</p>
+<p>Then the bed again. Sheets. Breath. My own pulse in the pillow, that wet insistent rhythm, marking time like something that has never once stopped keeping it, not for a second, not while I slept, not while I forgot to listen.</p>
+<p><strong>X. CLOSING IMAGE</strong></p>
+<p>The last sound before sleep is the refrigerator again, three rooms away, patient, indifferent, still humming — the same note the day began on. A full circle of sound closing over itself. I understand, finally, that I was never without ears before today. I simply never had to be <em>only</em> ears to know how much they'd been carrying, quietly — and how relentlessly — this entire time.</p>
+<hr />
+</div>
+</section>
+<div class="quiet-return"><a href="organ-days.html" data-transition>Return to the doors</a></div>
 </main>
-<footer><p>AUCOSMOS · Reflect deeply. Build meaningfully.</p></footer>
-
 <script>
   (() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

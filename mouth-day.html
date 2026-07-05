@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Organ Days · AUCOSMOS</title>
-<meta name="description" content="A literary-sensory experience on attention, perception, thought, speech, and the heart." />
+<title>MOUTH DAY · The Organ Days · AUCOSMOS</title>
+<meta name="description" content="Speech, taste, and the weight of words — The Organ Days, an AUCOSMOS experience." />
 <style>
     :root { --bg:#0f1412; --bg-soft:#151b18; --text:#f3ead8; --muted:rgba(243,234,216,.72); --line:rgba(243,234,216,.16); --gold:#e9d8b8; --shadow:rgba(0,0,0,.35); }
     * { box-sizing:border-box; } html { scroll-behavior:smooth; }
@@ -24,7 +24,7 @@
     .intro-note { max-width:860px; margin:0 auto; padding:0 22px 76px; color:var(--muted); text-align:center; font-size:1.05rem; }
     .doors { max-width:1180px; margin:0 auto; padding:40px 22px 96px; } .doors h2 { font-size:clamp(2.4rem,6vw,5rem); margin:0 0 14px; } .doors>p { color:var(--muted); max-width:700px; margin:0 0 30px; }
     .door-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; } .door-card { min-height:190px; border:1px solid var(--line); border-radius:26px; padding:26px; text-decoration:none; background:linear-gradient(135deg,rgba(255,255,255,.052),rgba(255,255,255,.018)); box-shadow:0 22px 70px var(--shadow); transition:transform 180ms ease,border-color 180ms ease,background 180ms ease; display:flex; flex-direction:column; justify-content:space-between; } .door-card:hover { transform:translateY(-3px); border-color:rgba(233,216,184,.38); background:linear-gradient(135deg,rgba(233,216,184,.08),rgba(255,255,255,.018)); } .door-label { display:block; font-family:Georgia,'Times New Roman',serif; font-size:clamp(1.55rem,3vw,2.4rem); line-height:1.08; } .door-desc { display:block; color:var(--muted); margin-top:24px; font-size:.98rem; }
-    .day-section { max-width:900px; margin:0 auto; padding:92px 22px; border-top:1px solid var(--line); } .section-kicker { letter-spacing:.24em; font-size:.7rem; color:rgba(243,234,216,.55); margin-bottom:18px; } .day-section h2 { font-size:clamp(2.4rem,7vw,5.6rem); line-height:.95; margin:0 0 42px; }
+    .day-section { max-width:900px; margin:0 auto; padding:108px 22px 92px; border-top:1px solid var(--line); } .section-kicker { letter-spacing:.24em; font-size:.7rem; color:rgba(243,234,216,.55); margin-bottom:18px; } .day-section h2 { font-size:clamp(2.4rem,7vw,5.6rem); line-height:.95; margin:0 0 42px; }
     .day-body { font-family:Georgia,'Times New Roman',serif; font-size:clamp(1.12rem,2vw,1.38rem); color:rgba(243,234,216,.9); } .day-body h2,.day-body h3 { font-size:clamp(1.2rem,2.5vw,1.7rem); margin-top:44px; letter-spacing:.02em; } .day-body p { margin:0 0 1.35em; } .day-body em { color:#fff4df; } .day-body hr { border:0; border-top:1px solid var(--line); margin:64px 0; } .section-return { margin-top:46px; font-size:.92rem; color:var(--muted); } .section-return a { text-decoration:none; border-bottom:1px solid var(--line); }
     .heartbeat { width:min(360px,74vw); height:120px; margin:42px auto 0; position:relative; opacity:.78; } .heartbeat::before { content:""; position:absolute; inset:0; border-radius:50%; border:1px solid rgba(233,216,184,.35); animation:pulse 1.45s ease-in-out infinite; } .heartbeat::after { content:""; position:absolute; left:50%; top:50%; width:18px; height:18px; border-radius:50%; background:var(--gold); transform:translate(-50%,-50%); box-shadow:0 0 50px rgba(233,216,184,.45); animation:dot 1.45s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{transform:scale(.72);opacity:.18} 18%{transform:scale(.86);opacity:.65} 30%{transform:scale(.78);opacity:.38} 46%{transform:scale(1);opacity:.18} } @keyframes dot { 0%,100%{transform:translate(-50%,-50%) scale(.8)} 18%{transform:translate(-50%,-50%) scale(1.22)} 30%{transform:translate(-50%,-50%) scale(.92)} 46%{transform:translate(-50%,-50%) scale(1.05)} }
@@ -56,18 +56,40 @@
 </style>
 </head>
 <body>
-<nav class="site-nav"><div class="site-nav-inner"><a class="brand" href="index.html">AUCOSMOS</a><div class="nav-links"><a href="organ-days.html">Organ Days</a><a href="index.html">Home</a></div></div></nav>
-<header class="hero" id="top"><div class="hero-content"><div class="eyebrow">AUCOSMOS EXPERIENCE</div><h1>The Organ Days</h1><p class="subtitle">A literary-sensory reflection on attention, perception, thought, speech, and the quiet miracle of being alive.</p><div class="hero-actions"><a class="button primary" href="#doors">Choose a door</a><a class="button" href="index.html">Back to AUCOSMOS</a></div></div></header>
-<main>
-<section class="doors" id="doors" aria-labelledby="doors-title"><h2 id="doors-title">Choose a door.</h2><p class="entry-note">One organ. One doorway. One quiet room at a time. The two Mind Day doors are meant to answer each other: one sealed, one flooded. Choose either first.</p><div class="door-grid"><a class="door-card" data-transition href="ear-day.html"><span class="door-label">EAR DAY</span><span class="door-desc">Attention through sound.</span></a>
-<a class="door-card" data-transition href="eyes-day.html"><span class="door-label">EYES DAY</span><span class="door-desc">Perception through light.</span></a>
-<a class="door-card" data-transition href="mind-sealed.html"><span class="door-label">MIND DAY — FACET ONE</span><span class="door-desc">The sealed room.</span></a>
-<a class="door-card" data-transition href="mind-flooded.html"><span class="door-label">MIND DAY — FACET TWO</span><span class="door-desc">Everything, all at once.</span></a>
-<a class="door-card" data-transition href="mouth-day.html"><span class="door-label">MOUTH DAY</span><span class="door-desc">Speech, taste, and the weight of words.</span></a>
-<a class="door-card" data-transition href="heart-day.html"><span class="door-label">HEART DAY</span><span class="door-desc">Return to rhythm.</span></a></div></section>
+<main class="quiet-main">
+<section class="day-section" id="mouth-day" aria-labelledby="mouth-day-title">
+  <div class="section-kicker">THE ORGAN DAYS</div>
+  <h2 id="mouth-day-title">MOUTH DAY</h2>
+  <div class="day-body"><p><em>A note on form: this one is written to be spoken, not just read. The mouth is the one organ in this series that is also the instrument of the telling — it doesn't just experience the day, it narrates it in real time, out loud, and the text should feel that doubling. Read it aloud. Let the plosives and long vowels do physical work. Where other days observe, this one performs.</em></p>
+<p><strong>I. WAKING</strong></p>
+<p>Say it with me — the first sound of the day isn't a word yet, it's just breath finding a shape: <em>mmm.</em> Lips together before anything else happens. Before thought, before light, there's this — the small hum of a body remembering it has a mouth at all. Then the tongue moves, dry, thick, dragging itself across the roof of a mouth that tastes like sleep, like nothing, like the inside of something that's been closed for hours.</p>
+<p>I am only mouth today, and the first thing a mouth wants, before it wants to speak, is water.</p>
+<p><strong>II. WATER</strong></p>
+<p>Cool, and then colder than expected, and then — this is the part no one tells you — <em>loud</em>, from the inside. Swallowing is a small percussion event, a series of contractions I never once had to think about and now cannot stop noticing, muscle answering muscle, water disappearing down a corridor I've never had to picture before. Say <em>swallow</em> out loud. Feel where the word sits in your own throat as you say it. That's where I live today.</p>
+<p><strong>III. MORNING — THE FIRST WORD</strong></p>
+<p>Someone says good morning to me and I have to build a reply from nothing — air pushed up from somewhere below, shaped by the throat into voice, then carved by tongue and teeth and lips into <em>good morning</em> back. Say it slowly: <em>good.</em> The back of the tongue rising to meet the soft palate, a small stop, a held breath, then release. <em>Morning</em> — the lips almost closing on the M, the tongue tapping twice, quick, for the R and the N. I never noticed how much construction goes into two ordinary words. Today I feel every beam of it going up.</p>
+<p><strong>IV. BREAKFAST — TASTE</strong></p>
+<p>Bread first, plain, and it isn't plain at all once you're only mouth — the outside gives way with a small violence, a crackle you feel more than hear, then softness underneath, and a taste that unfolds in stages: wheat, then something faintly sweet, then salt arriving last, almost an afterthought. I chew and understand chewing as a kind of conversation between teeth that never learned to stop talking to each other.</p>
+<p>Then coffee — bitter first, a warning, and then underneath it something almost like burnt sugar, and heat spreading across the tongue in a way that feels less like taste and more like weather. Say <em>bitter</em> out loud, notice how the word itself bites a little on the way out. Language, it turns out, remembers what the mouth taught it.</p>
+<p><strong>V. LEAVING THE HOUSE — SPEECH AMONG STRANGERS</strong></p>
+<p>Out in the world, my mouth becomes a kind of currency — greetings handed out and received, small transactions of sound. <em>Excuse me.</em> <em>Thank you.</em> <em>Sorry.</em> Each one shaped almost automatically, worn smooth from overuse, like a coin passed through a thousand hands. I notice how much of a day is spent saying things I don't fully mean and meaning things I never quite say. The mouth carries both — the polite lie and the swallowed truth — in the very same muscle, sometimes in the very same sentence.</p>
+<p><strong>VI. MIDDAY — THE WEIGHT OF WORDS</strong></p>
+<p>A hard conversation. I feel the sentence I want to say building somewhere behind the teeth, and then, at the last second, changing shape — a softer word chosen instead of the true one, out of kindness or cowardice, I can't always tell which. Say <em>I'm fine</em> out loud right now, the way you'd say it to someone you were worried about worrying. Notice how easy it is. Notice how little the mouth needs to believe a sentence in order to produce it perfectly.</p>
+<p>And then, somewhere else in the same hour, a true sentence, said plainly, and it costs something different to say — a small tightening in the throat before the words, a held breath after. I understand today that the mouth is not just an instrument of sound. It's a scale. It weighs every sentence, even when no one else can hear the weighing.</p>
+<p><strong>VII. AFTERNOON — SILENCE, AND THE SHAPE OF NOT SPEAKING</strong></p>
+<p>For a while, nothing. No eating, no talking. And the mouth doesn't disappear the way I expected — it stays present, closed, waiting, the way a held door still has a shape even shut. I run my tongue along the back of my teeth, an idle map-making, feeling ridges I've never paid attention to. A mouth at rest is not an empty mouth. It's an instrument between songs, still tuned, still capable, just quiet by choice.</p>
+<p><strong>VIII. EVENING — LAUGHTER</strong></p>
+<p>Someone tells a joke and the laugh arrives before I decide to let it — a full-body eruption that starts, somehow, right here, breath forced out in broken bursts, the whole shape of the mouth changing, opening wider than any word requires. Say <em>ha</em> three times out loud, fast. Notice how close that sound is to something involuntary, something closer to breathing than to speaking. I understand joy today as something the mouth does <em>before</em> language arrives to name it — the body laughing a full second before the mind knows exactly why.</p>
+<p><strong>IX. NIGHT — THE LAST WORDS</strong></p>
+<p>Goodnight, said softly to someone in the next room, the volume dropping the way it always does after dark, as if the whole house has agreed to whisper. I notice, saying it, how a soft word and a soft feeling use the very same muscles — that tenderness isn't only heard, it's <em>built</em>, in real time, by lips barely moving, by breath kept low on purpose.</p>
+<p>Then, brushing, water again, the small ordinary rituals of closing a mouth's long working day. Last taste: mint, sharp, cleaning everything else away.</p>
+<p><strong>X. CLOSING IMAGE</strong></p>
+<p>Lips close. Not sealed — just resting, the way they do every night, the day's last labor finally set down. I understand, finally, that I was never without this mouth before today — that every word I've ever spoken, every taste I've ever had, every kindness I've withheld or handed over, passed through this same small, tireless doorway between the inside of me and everyone else. Say goodnight, out loud, to no one, just to feel the door close one more time.</p>
+<hr />
+</div>
+</section>
+<div class="quiet-return"><a href="organ-days.html" data-transition>Return to the doors</a></div>
 </main>
-<footer><p>AUCOSMOS · Reflect deeply. Build meaningfully.</p></footer>
-
 <script>
   (() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

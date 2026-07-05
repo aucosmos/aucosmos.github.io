@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Organ Days · AUCOSMOS</title>
-<meta name="description" content="A literary-sensory experience on attention, perception, thought, speech, and the heart." />
+<title>EYES DAY · The Organ Days · AUCOSMOS</title>
+<meta name="description" content="Perception through light — The Organ Days, an AUCOSMOS experience." />
 <style>
     :root { --bg:#0f1412; --bg-soft:#151b18; --text:#f3ead8; --muted:rgba(243,234,216,.72); --line:rgba(243,234,216,.16); --gold:#e9d8b8; --shadow:rgba(0,0,0,.35); }
     * { box-sizing:border-box; } html { scroll-behavior:smooth; }
@@ -24,7 +24,7 @@
     .intro-note { max-width:860px; margin:0 auto; padding:0 22px 76px; color:var(--muted); text-align:center; font-size:1.05rem; }
     .doors { max-width:1180px; margin:0 auto; padding:40px 22px 96px; } .doors h2 { font-size:clamp(2.4rem,6vw,5rem); margin:0 0 14px; } .doors>p { color:var(--muted); max-width:700px; margin:0 0 30px; }
     .door-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; } .door-card { min-height:190px; border:1px solid var(--line); border-radius:26px; padding:26px; text-decoration:none; background:linear-gradient(135deg,rgba(255,255,255,.052),rgba(255,255,255,.018)); box-shadow:0 22px 70px var(--shadow); transition:transform 180ms ease,border-color 180ms ease,background 180ms ease; display:flex; flex-direction:column; justify-content:space-between; } .door-card:hover { transform:translateY(-3px); border-color:rgba(233,216,184,.38); background:linear-gradient(135deg,rgba(233,216,184,.08),rgba(255,255,255,.018)); } .door-label { display:block; font-family:Georgia,'Times New Roman',serif; font-size:clamp(1.55rem,3vw,2.4rem); line-height:1.08; } .door-desc { display:block; color:var(--muted); margin-top:24px; font-size:.98rem; }
-    .day-section { max-width:900px; margin:0 auto; padding:92px 22px; border-top:1px solid var(--line); } .section-kicker { letter-spacing:.24em; font-size:.7rem; color:rgba(243,234,216,.55); margin-bottom:18px; } .day-section h2 { font-size:clamp(2.4rem,7vw,5.6rem); line-height:.95; margin:0 0 42px; }
+    .day-section { max-width:900px; margin:0 auto; padding:108px 22px 92px; border-top:1px solid var(--line); } .section-kicker { letter-spacing:.24em; font-size:.7rem; color:rgba(243,234,216,.55); margin-bottom:18px; } .day-section h2 { font-size:clamp(2.4rem,7vw,5.6rem); line-height:.95; margin:0 0 42px; }
     .day-body { font-family:Georgia,'Times New Roman',serif; font-size:clamp(1.12rem,2vw,1.38rem); color:rgba(243,234,216,.9); } .day-body h2,.day-body h3 { font-size:clamp(1.2rem,2.5vw,1.7rem); margin-top:44px; letter-spacing:.02em; } .day-body p { margin:0 0 1.35em; } .day-body em { color:#fff4df; } .day-body hr { border:0; border-top:1px solid var(--line); margin:64px 0; } .section-return { margin-top:46px; font-size:.92rem; color:var(--muted); } .section-return a { text-decoration:none; border-bottom:1px solid var(--line); }
     .heartbeat { width:min(360px,74vw); height:120px; margin:42px auto 0; position:relative; opacity:.78; } .heartbeat::before { content:""; position:absolute; inset:0; border-radius:50%; border:1px solid rgba(233,216,184,.35); animation:pulse 1.45s ease-in-out infinite; } .heartbeat::after { content:""; position:absolute; left:50%; top:50%; width:18px; height:18px; border-radius:50%; background:var(--gold); transform:translate(-50%,-50%); box-shadow:0 0 50px rgba(233,216,184,.45); animation:dot 1.45s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{transform:scale(.72);opacity:.18} 18%{transform:scale(.86);opacity:.65} 30%{transform:scale(.78);opacity:.38} 46%{transform:scale(1);opacity:.18} } @keyframes dot { 0%,100%{transform:translate(-50%,-50%) scale(.8)} 18%{transform:translate(-50%,-50%) scale(1.22)} 30%{transform:translate(-50%,-50%) scale(.92)} 46%{transform:translate(-50%,-50%) scale(1.05)} }
@@ -56,18 +56,42 @@
 </style>
 </head>
 <body>
-<nav class="site-nav"><div class="site-nav-inner"><a class="brand" href="index.html">AUCOSMOS</a><div class="nav-links"><a href="organ-days.html">Organ Days</a><a href="index.html">Home</a></div></div></nav>
-<header class="hero" id="top"><div class="hero-content"><div class="eyebrow">AUCOSMOS EXPERIENCE</div><h1>The Organ Days</h1><p class="subtitle">A literary-sensory reflection on attention, perception, thought, speech, and the quiet miracle of being alive.</p><div class="hero-actions"><a class="button primary" href="#doors">Choose a door</a><a class="button" href="index.html">Back to AUCOSMOS</a></div></div></header>
-<main>
-<section class="doors" id="doors" aria-labelledby="doors-title"><h2 id="doors-title">Choose a door.</h2><p class="entry-note">One organ. One doorway. One quiet room at a time. The two Mind Day doors are meant to answer each other: one sealed, one flooded. Choose either first.</p><div class="door-grid"><a class="door-card" data-transition href="ear-day.html"><span class="door-label">EAR DAY</span><span class="door-desc">Attention through sound.</span></a>
-<a class="door-card" data-transition href="eyes-day.html"><span class="door-label">EYES DAY</span><span class="door-desc">Perception through light.</span></a>
-<a class="door-card" data-transition href="mind-sealed.html"><span class="door-label">MIND DAY — FACET ONE</span><span class="door-desc">The sealed room.</span></a>
-<a class="door-card" data-transition href="mind-flooded.html"><span class="door-label">MIND DAY — FACET TWO</span><span class="door-desc">Everything, all at once.</span></a>
-<a class="door-card" data-transition href="mouth-day.html"><span class="door-label">MOUTH DAY</span><span class="door-desc">Speech, taste, and the weight of words.</span></a>
-<a class="door-card" data-transition href="heart-day.html"><span class="door-label">HEART DAY</span><span class="door-desc">Return to rhythm.</span></a></div></section>
+<main class="quiet-main">
+<section class="day-section" id="eyes-day" aria-labelledby="eyes-day-title">
+  <div class="section-kicker">THE ORGAN DAYS</div>
+  <h2 id="eyes-day-title">EYES DAY</h2>
+  <div class="day-body"><p><strong>I. WAKING</strong></p>
+<p>Light first — not sound, not touch, but light, arriving before I'm ready for it, a pale seam at the edge of the curtain. I am only eyes today, and the first thing eyes do is squint against their own arrival. The ceiling above me is a landscape I've never actually studied — a hairline crack running toward the corner like a river on a map, a water stain shaped like nothing and also like everything, depending how long I let myself look.</p>
+<p>I realize I have been half-blind my whole life, glancing instead of seeing. Today there is no glancing. There is only this — the full weight of looking, and no way to look away from myself looking.</p>
+<p><strong>II. THE BODY SEEN</strong></p>
+<p>My hands, held up against the window light, are suddenly foreign — the map of small lines across each knuckle, a scar I forgot the story of, the particular color of my own skin, which I've never once had to name before. I see the dust suspended in a single shaft of morning light, slow, chaotic, endless, and I understand that this has always been happening, in every room, in every beam of light, whether I was watching or not.</p>
+<p>The mirror. I look longer than I ever have. Not vain — just <em>looking</em>, the way you'd look at a stranger's face trying to memorize it. My own eyes, looking back, are the strangest thing I see all day.</p>
+<p><strong>III. MORNING RITUAL</strong></p>
+<p>Steam rising off water, curling and dissolving, a shape that never repeats itself twice. The specific gold of tea in a white cup. A face across the table — someone I love, maybe — and I see, really see, the tiredness under their eyes, a small line near their mouth that means they're about to smile before they do, a story their face tells before their voice does.</p>
+<p>I notice color today with a violence I wasn't prepared for. The red of a mug. The green going yellow at the edges of a leaf outside the window. I had been living in a world of description — &quot;the red mug&quot; — instead of a world of <em>seeing</em> it, and the difference is enormous.</p>
+<p><strong>IV. LEAVING THE HOUSE</strong></p>
+<p>The door opens onto more light than I expected, and for a moment the world is only brightness, blown out, overexposed, before it resolves into shapes. The street is a wash of motion — cars in colors I could list but never really registered, a woman's coat catching wind, a child's hand reaching for a balloon that's already halfway gone.</p>
+<p>I see faces now, hundreds of them, each one a complete unrepeated fact — the particular exhaustion in one, the private joke behind another's small smile, an old man's face doing something with grief I recognize but can't name. Faces I'll never see again, each carrying a whole life I'll only get this one glimpse of.</p>
+<p><strong>V. MIDDAY — THE CROWDED HOUR</strong></p>
+<p>A place full of people, and my eyes don't know where to rest — motion everywhere, gesture, expression, a hand on an arm, a glance exchanged between two people that says more than their conversation does. I watch a couple at another table have an entire argument without raising their voices, all of it visible in the set of shoulders, the refusal to meet each other's eyes, and then, finally, the small capitulation of a hand reaching across the table.</p>
+<p>I understand something about seeing that I never had language for — that watching someone is a kind of intimacy, uninvited sometimes, and that faces are always performing and always leaking truth at the same time, both at once, inseparably.</p>
+<p><strong>VI. AFTERNOON — A MOMENT OF STILLNESS, AND A CHAIR</strong></p>
+<p>Alone, eyes closed by choice for the first time all day, and even behind the lids there's a faint red wash of light, never true black, never true nothing. I open them again onto an empty room and let myself just look — really look — at ordinary things. The grain of a wooden table. A crack of paint on a windowsill. A single fly, motionless, on the glass.</p>
+<p>I look at a chair in the corner and try, deliberately, to see it as only shape and light before it becomes <em>chair</em>. I fail instantly. The word arrives before the wood does — not four legs and a plane and a joint, but <em>chair</em>, whole, already named, already known, in less time than it takes to blink. Years of memory collapsing into a fraction of a second, every chair I've ever sat in folded invisibly into this one. I wonder, for the first time, how much of seeing is sight at all, and how much of it is only remembering, fast enough to feel like seeing.</p>
+<p>I think: this is the first time all day I've tried to look at something <em>without needing it to mean anything</em> — and even that turned out to be impossible. It's exhausting, and it's also the closest thing to peace I've felt, this brushing up against the edge of what my eyes can't help but interpret.</p>
+<p><strong>VII. EVENING — A VIEW</strong></p>
+<p>The sky does the thing it does every evening and that I have apparently never actually watched happen — color bleeding from blue into orange into a bruised, deepening violet, clouds catching fire at their edges before going gray. I watch it change in real time, minute by minute, and it undoes me a little, that this happens every single day, in full, unbothered by whether anyone watches.</p>
+<p>Someone's face, lit gold by that same light, laughing at something I can't hear because today there is no hearing, only this — the shape of the laugh, the way it moves through the whole face, eyes first, then mouth. I understand joy differently now, as something visible before it's audible.</p>
+<p><strong>VIII. NIGHT — CLOSING</strong></p>
+<p>Lights go out room by room, each one a small dimming of the world. The window holds a single point of light — a star, or a plane, or a neighbor's porch light, I can't tell which anymore and it doesn't matter. Darkness gathers at the edges of the room like something arriving rather than something absent.</p>
+<p>The last thing I see is the ceiling again, the same crack, the same water stain, now just a shape in near-dark, barely there.</p>
+<p><strong>IX. CLOSING IMAGE</strong></p>
+<p>Eyes close. Not blindness — just rest. And behind the lids, that same faint red wash of light from the afternoon, the color of blood and eyelid and nothing else, holding steady until it, too, fades. I understand, finally, that I was never without eyes before today. I simply never had to be <em>only</em> eyes to know how much they'd been showing me, quietly, this entire time — and how much of what they showed me, I had already decided the meaning of before I ever really looked.</p>
+<hr />
+</div>
+</section>
+<div class="quiet-return"><a href="organ-days.html" data-transition>Return to the doors</a></div>
 </main>
-<footer><p>AUCOSMOS · Reflect deeply. Build meaningfully.</p></footer>
-
 <script>
   (() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
