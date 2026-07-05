@@ -63,3 +63,18 @@ This version adds subtle sensory visuals to each quiet room:
 - Coda: minimal breathing field.
 
 The animations respect `prefers-reduced-motion`, so visitors who disable motion will get a still version.
+
+
+## Visual Experience v2
+
+This version makes the sensory visuals intentionally visible, not barely-there background decoration. Each room now has a visual installation before the text begins:
+
+- Ear Day: animated sound source, wave lines, and expanding rings.
+- Eyes Day: moving light beam, dust particles, and a chair resolving into a named object.
+- Mind Sealed: a dark enclosed frame with faint echo-thoughts.
+- Mind Flooded: signals and streams arriving toward a central point.
+- Mouth Day: breath line, mouth shape, and word-vapor.
+- Heart Day: minimal but visible pulse field.
+- Coda: almost-empty breathing field.
+
+Upload all files to the GitHub Pages root. Keep `.nojekyll` in the root as a safety measure.
