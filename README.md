@@ -42,3 +42,9 @@ The final room will be here:
 ```txt
 https://aucosmos.com/coda.html
 ```
+
+
+Update: `organ-days.html` now includes a `Choose for me` randomizer button. It randomly opens one organ room and excludes `coda.html`, so the ending is never spoiled by the random choice.
+
+
+Latest small update: `organ-days.html` now uses a **Pick for me** button that suggests one organ room without opening it automatically. The visitor can still choose whether to enter the suggested room or pick another door. The coda is excluded from suggestions.
