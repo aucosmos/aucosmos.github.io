@@ -3,599 +3,1045 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#102a22">
-  <meta name="description" content="A lightweight interactive preview of the AUCOSMOS 99 Names XR project, beginning with Ar-Rahman and Ar-Rahim.">
-  <title>99 Names XR — AUCOSMOS</title>
+  <meta name="theme-color" content="#07100d">
+  <meta name="description" content="AUCOSMOS Indie XR Lab — begin with the smallest working room and build toward meaningful spatial experiences.">
+  <title>AUCOSMOS — Indie XR Lab</title>
   <style>
     :root {
-      --forest: #102a22;
-      --forest-deep: #071712;
-      --cream: #f2ecdf;
-      --cream-soft: #e6ddcb;
-      --gold: #d8bd9e;
-      --sand: #cbb99b;
-      --muted: rgba(242, 236, 223, .72);
-      --line: rgba(242, 236, 223, .16);
-      --glass: rgba(7, 23, 18, .66);
-      --shadow: 0 28px 90px rgba(0, 0, 0, .34);
+      --ink: #07100d;
+      --ink-2: #0a1712;
+      --forest: #14372b;
+      --cream: #f0e8da;
+      --paper: #e6dccb;
+      --muted: rgba(240, 232, 218, .62);
+      --faint: rgba(240, 232, 218, .10);
+      --line: rgba(240, 232, 218, .16);
+      --gold: #cdb18d;
+      --gold-soft: rgba(205, 177, 141, .18);
+      --shadow: 0 30px 80px rgba(0, 0, 0, .28);
+      --serif: Iowan Old Style, Baskerville, "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --radius: 24px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      min-height: 100vh;
-      color: var(--cream);
       background:
-        radial-gradient(circle at 20% 0%, rgba(216, 189, 158, .15), transparent 34rem),
-        linear-gradient(160deg, var(--forest) 0%, var(--forest-deep) 68%);
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.65;
+        radial-gradient(circle at 72% 10%, rgba(75, 125, 98, .11), transparent 30rem),
+        radial-gradient(circle at 18% 48%, rgba(205, 177, 141, .05), transparent 27rem),
+        var(--ink);
+      color: var(--cream);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    button, textarea { font: inherit; }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      opacity: .035;
+      pointer-events: none;
+      z-index: 20;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+    }
+
+    button, input { font: inherit; }
     button, a { -webkit-tap-highlight-color: transparent; }
-    a { color: inherit; }
+    button { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--gold); color: var(--ink); }
+
     .skip-link {
       position: fixed;
+      top: 12px;
+      left: 12px;
       z-index: 100;
-      left: 1rem;
-      top: 1rem;
-      padding: .7rem 1rem;
-      color: var(--forest-deep);
+      padding: 10px 14px;
       background: var(--cream);
-      border-radius: 999px;
-      transform: translateY(-180%);
+      color: var(--ink);
+      transform: translateY(-150%);
+      transition: transform .2s ease;
     }
     .skip-link:focus { transform: translateY(0); }
-    :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 
-    .shell { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; }
+    .shell { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+
     .nav {
-      min-height: 74px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 15;
+      transition: background .35s ease, border-color .35s ease;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(7, 16, 13, .82);
+      backdrop-filter: blur(18px);
+      border-color: var(--line);
+    }
+    .nav-inner {
+      min-height: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 32px;
     }
-    .brand {
-      color: var(--cream);
-      text-decoration: none;
-      letter-spacing: .18em;
-      font-size: .78rem;
-      text-transform: uppercase;
+    .brand { display: inline-flex; align-items: center; gap: 13px; letter-spacing: .18em; font-size: .76rem; }
+    .brand-mark {
+      width: 31px;
+      aspect-ratio: 1;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
     }
-    .back {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: .83rem;
-      border-bottom: 1px solid transparent;
+    .brand-mark::before, .brand-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(205, 177, 141, .48);
     }
-    .back:hover { color: var(--cream); border-color: var(--line); }
+    .brand-mark::before { width: 17px; height: 17px; }
+    .brand-mark::after { width: 3px; height: 3px; background: var(--gold); border: 0; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: .76rem; color: var(--muted); }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--cream); }
+    .nav-cta {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 15px;
+      color: var(--cream) !important;
+    }
 
     .hero {
-      min-height: calc(100vh - 74px);
+      min-height: 100svh;
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
       align-items: center;
-      gap: clamp(2rem, 7vw, 6rem);
-      padding: 4rem 0 6rem;
+      padding: 124px 0 70px;
+      position: relative;
+      isolation: isolate;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 22%;
+      background: linear-gradient(transparent, var(--ink));
+      z-index: -1;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(410px, 1.08fr);
+      align-items: center;
+      gap: clamp(40px, 7vw, 96px);
     }
     .eyebrow {
-      margin: 0 0 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 11px;
       color: var(--gold);
-      font-size: .73rem;
+      font-size: .7rem;
       letter-spacing: .2em;
       text-transform: uppercase;
+      margin: 0 0 24px;
     }
-    h1, h2, h3, .arabic {
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 400;
-    }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
     h1 {
-      max-width: 780px;
-      margin: 0;
-      font-size: clamp(3.4rem, 8vw, 7.8rem);
-      line-height: .9;
-      letter-spacing: -.055em;
+      font-family: var(--serif);
+      font-size: clamp(4rem, 8.4vw, 8.5rem);
+      font-weight: 400;
+      line-height: .83;
+      letter-spacing: -.065em;
+      margin-bottom: 32px;
     }
+    h1 span { display: block; margin-left: .74em; color: var(--gold); font-style: italic; }
     .hero-copy {
-      max-width: 640px;
-      margin: 1.7rem 0 0;
+      max-width: 570px;
       color: var(--muted);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(1.06rem, 2vw, 1.3rem);
+      font-size: clamp(1rem, 1.5vw, 1.16rem);
+      line-height: 1.75;
+      margin-bottom: 32px;
     }
-    .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
     .button {
-      min-height: 48px;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 20px;
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: .55rem;
-      padding: .78rem 1.2rem;
-      border: 1px solid var(--gold);
-      border-radius: 999px;
-      color: var(--forest-deep);
-      background: var(--cream);
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform .2s ease, background .2s ease, color .2s ease;
+      gap: 12px;
+      transition: transform .22s ease, background .22s ease, border-color .22s ease;
     }
     .button:hover { transform: translateY(-2px); }
-    .button.secondary { color: var(--cream); background: transparent; border-color: var(--line); }
-    .button.quiet { color: var(--muted); background: transparent; border-color: transparent; }
-    .button[disabled] { opacity: .45; cursor: not-allowed; transform: none; }
+    .button.primary { background: var(--cream); color: var(--ink); }
+    .button.secondary { background: transparent; border: 1px solid var(--line); color: var(--cream); }
+    .button.secondary:hover { border-color: var(--gold); background: var(--gold-soft); }
+    .button-arrow { font-size: 1.1rem; transition: transform .25s ease; }
+    .button:hover .button-arrow { transform: translateX(3px); }
 
-    .hero-art {
-      position: relative;
-      min-height: 520px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 46% 46% 24px 24px;
-      background:
-        linear-gradient(180deg, rgba(7,23,18,.04), rgba(7,23,18,.72)),
-        url("99-names-xr-page.png") center/cover;
-      box-shadow: var(--shadow);
-    }
-    .hero-art::after {
-      content: "Prototype 01 · Ar-Rahman + Ar-Rahim";
-      position: absolute;
-      left: 1.25rem;
-      right: 1.25rem;
-      bottom: 1.25rem;
-      padding: .9rem 1rem;
-      color: var(--cream-soft);
-      background: rgba(7,23,18,.62);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      backdrop-filter: blur(12px);
-      text-align: center;
-      font-size: .75rem;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    .principle {
+    .room-wrap {
+      min-height: 610px;
       display: grid;
-      grid-template-columns: .72fr 1.28fr;
-      gap: 2rem;
-      padding: clamp(3rem, 8vw, 7rem) 0;
-      border-top: 1px solid var(--line);
-    }
-    .principle h2 { margin: 0; font-size: clamp(2rem, 4vw, 4rem); line-height: 1; }
-    .principle p { max-width: 720px; margin: 0; color: var(--muted); font-size: 1.06rem; }
-
-    .experience-wrap { padding: 2rem 0 7rem; }
-    .experience-head { max-width: 720px; margin-bottom: 1.6rem; }
-    .experience-head h2 { margin: 0; font-size: clamp(2.4rem, 5vw, 5rem); line-height: 1; }
-    .experience-head p { color: var(--muted); }
-    .experience {
+      place-items: center;
+      perspective: 1000px;
       position: relative;
-      min-height: 690px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 32px;
-      background: rgba(7,23,18,.52);
-      box-shadow: var(--shadow);
+    }
+    .room-wrap::before {
+      content: "MOVE TO OBSERVE";
+      position: absolute;
+      top: 4%;
+      right: 5%;
+      font-size: .58rem;
+      letter-spacing: .2em;
+      color: rgba(240, 232, 218, .32);
+    }
+    .room {
+      --rx: 0deg;
+      --ry: 0deg;
+      width: min(540px, 43vw);
+      aspect-ratio: 1;
+      position: relative;
+      transform: rotateX(var(--rx)) rotateY(var(--ry));
+      transform-style: preserve-3d;
+      transition: transform .12s linear;
       isolation: isolate;
     }
-    .experience::before {
+    .room-halo {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(205, 177, 141, .18);
+      box-shadow: 0 0 120px rgba(205, 177, 141, .05);
+    }
+    .room-halo::before, .room-halo::after {
       content: "";
       position: absolute;
-      z-index: -3;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 32%, rgba(242,236,223,.15), transparent 26rem),
-        linear-gradient(180deg, rgba(16,42,34,.45), rgba(7,23,18,.92));
+      inset: 9%;
+      border-radius: inherit;
+      border: 1px solid rgba(240, 232, 218, .08);
+    }
+    .room-halo::after { inset: 24%; border-style: dashed; animation: spin 35s linear infinite; }
+    @keyframes spin { to { transform: rotate(1turn); } }
+    .room-stage {
+      position: absolute;
+      inset: 18%;
+      overflow: hidden;
+      background: linear-gradient(145deg, #0b1a14, #07100d 68%);
+      border: 1px solid rgba(240, 232, 218, .18);
+      box-shadow: var(--shadow), inset 0 0 70px rgba(0, 0, 0, .4);
+      clip-path: polygon(8% 0, 92% 0, 100% 8%, 100% 92%, 92% 100%, 8% 100%, 0 92%, 0 8%);
+      transition: border-color .8s ease, box-shadow .8s ease;
+    }
+    .room-stage::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: rgba(240, 232, 218, .07);
+      box-shadow: -130px 0 rgba(240, 232, 218, .04), 130px 0 rgba(240, 232, 218, .04);
+    }
+    .room-stage::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 52%;
+      border-top: 1px solid rgba(240, 232, 218, .08);
+      transform: perspective(300px) rotateX(56deg) scale(1.45);
+      transform-origin: bottom;
+      background: repeating-linear-gradient(90deg, transparent 0 48px, rgba(240, 232, 218, .04) 49px 50px);
+    }
+    .light-line {
+      position: absolute;
+      left: 50%;
+      top: 14%;
+      bottom: 26%;
+      width: 1px;
+      background: transparent;
+      z-index: 2;
+      transition: background 1s ease, box-shadow 1s ease;
+    }
+    .light-line::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -26%;
+      width: 130px;
+      height: 70px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse, transparent, transparent 70%);
       transition: background 1s ease;
     }
-    .experience[data-stage="2"]::before {
-      background:
-        radial-gradient(circle at 50% 44%, rgba(216,189,158,.28), transparent 22rem),
-        linear-gradient(180deg, #173a30, #071712 82%);
-    }
-    .experience[data-stage="3"]::before {
-      background:
-        radial-gradient(circle at 50% 18%, rgba(216,189,158,.2), transparent 30rem),
-        linear-gradient(180deg, #102a22, #071712 76%);
-    }
-    .rain { position: absolute; z-index: -2; inset: 0; overflow: hidden; opacity: 0; transition: opacity .8s ease; }
-    .experience[data-stage="1"] .rain { opacity: 1; }
-    .drop {
+    .spatial-card {
       position: absolute;
-      top: -20%;
-      width: 1px;
-      height: var(--length, 90px);
-      background: linear-gradient(transparent, rgba(242,236,223,.52));
-      animation: fall var(--speed, 1.5s) linear infinite;
-      animation-delay: var(--delay, 0s);
+      z-index: 4;
+      top: 36%;
+      left: 50%;
+      width: 47%;
+      min-height: 31%;
+      transform: translate(-50%, -50%) perspective(500px) rotateX(-2deg);
+      border: 1px solid rgba(240, 232, 218, .13);
+      background: rgba(6, 14, 11, .65);
+      backdrop-filter: blur(4px);
+      padding: 23px;
+      text-align: center;
+      display: grid;
+      place-content: center;
+      transition: border-color 1s ease, background 1s ease, box-shadow 1s ease;
     }
-    @keyframes fall { to { transform: translateY(900px); } }
+    .spatial-card small { display: block; color: var(--gold); letter-spacing: .2em; font-size: .53rem; margin-bottom: 12px; }
+    .spatial-card strong { font-family: var(--serif); font-weight: 400; font-size: clamp(1rem, 2vw, 1.5rem); line-height: 1.2; }
+    .room-label {
+      position: absolute;
+      bottom: 9%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      font-size: .57rem;
+      color: rgba(240, 232, 218, .35);
+      letter-spacing: .18em;
+      white-space: nowrap;
+    }
+    .room-toggle {
+      position: absolute;
+      right: 7%;
+      bottom: 10%;
+      z-index: 6;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(7, 16, 13, .84);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+      transition: border-color .3s ease, background .3s ease, transform .3s ease;
+    }
+    .room-toggle:hover { border-color: var(--gold); transform: scale(1.05); }
+    .room-toggle svg { width: 18px; }
+    .room.is-lit .room-stage { border-color: rgba(205, 177, 141, .42); box-shadow: var(--shadow), inset 0 0 110px rgba(205, 177, 141, .08); }
+    .room.is-lit .light-line { background: var(--gold); box-shadow: 0 0 16px var(--gold), 0 0 55px rgba(205, 177, 141, .5); }
+    .room.is-lit .light-line::after { background: radial-gradient(ellipse, rgba(205, 177, 141, .3), transparent 70%); }
+    .room.is-lit .spatial-card { border-color: rgba(205, 177, 141, .46); background: rgba(18, 38, 29, .86); box-shadow: 0 12px 45px rgba(0, 0, 0, .3), 0 0 40px rgba(205, 177, 141, .08); }
+    .room.is-lit .room-toggle { background: var(--cream); color: var(--ink); }
 
-    .experience-top {
+    .hero-index {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(240, 232, 218, .34);
+      font-size: .6rem;
+      letter-spacing: .18em;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1rem 1.2rem;
-      border-bottom: 1px solid var(--line);
-      background: rgba(7,23,18,.42);
-      backdrop-filter: blur(12px);
+      gap: 12px;
     }
-    .stage-label { color: var(--muted); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
-    .sound-toggle {
-      min-height: 42px;
-      padding: .55rem .85rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--cream);
-      background: rgba(7,23,18,.42);
-      cursor: pointer;
-    }
-    .sound-toggle[aria-pressed="true"] { color: var(--forest-deep); background: var(--cream); }
-    .stepper {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: .5rem;
-      padding: 1rem 1.2rem 0;
-    }
-    .step {
-      display: grid;
-      gap: .35rem;
-      padding: .45rem;
-      border: 0;
-      color: rgba(242,236,223,.52);
-      background: transparent;
-      text-align: left;
-      cursor: pointer;
-    }
-    .step::before { content: ""; height: 2px; background: rgba(242,236,223,.16); }
-    .step[aria-current="step"] { color: var(--cream); }
-    .step[aria-current="step"]::before, .step.is-visited::before { background: var(--gold); }
-    .step span { font-size: .68rem; letter-spacing: .09em; text-transform: uppercase; }
+    .hero-index::before { content: ""; width: 1px; height: 35px; background: var(--line); }
 
-    .stage-area { min-height: 548px; display: grid; place-items: center; padding: clamp(2rem, 6vw, 5rem); }
-    .panel { display: none; width: min(760px, 100%); text-align: center; animation: reveal .65s ease both; }
-    .panel.is-active { display: block; }
-    @keyframes reveal { from { opacity: 0; transform: translateY(12px); } }
-    .panel h3 { margin: 0; font-size: clamp(2.7rem, 7vw, 6.2rem); line-height: .98; }
-    .arabic { margin: 0 0 .35rem; color: var(--cream); font-size: clamp(4.8rem, 12vw, 9rem); line-height: 1.25; direction: rtl; }
-    .transliteration { margin: 0; color: var(--gold); font-size: clamp(2.2rem, 5vw, 4.3rem); line-height: 1; }
-    .meaning { margin: .75rem 0 0; color: var(--cream-soft); font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; }
-    .reflection { max-width: 610px; margin: 1.5rem auto 0; color: var(--muted); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.15rem, 2.2vw, 1.42rem); }
-    .prompt { max-width: 620px; margin: 1.7rem auto 0; padding-top: 1.35rem; border-top: 1px solid var(--line); color: var(--cream); }
-    .panel-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem; margin-top: 2rem; }
-    .private-note { margin: .7rem 0 0; color: rgba(242,236,223,.5); font-size: .78rem; }
-    .journal { margin-top: 1.5rem; text-align: left; }
-    .journal label { display: block; margin-bottom: .6rem; color: var(--cream-soft); font-size: .86rem; }
-    textarea {
-      width: 100%;
-      min-height: 145px;
-      resize: vertical;
-      padding: 1rem;
-      color: var(--cream);
-      caret-color: var(--gold);
-      background: rgba(7,23,18,.52);
-      border: 1px solid var(--line);
-      border-radius: 16px;
+    section { padding: 125px 0; position: relative; }
+    .section-kicker { color: var(--gold); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 20px; }
+    .section-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.8rem, 6vw, 6.2rem);
+      letter-spacing: -.045em;
+      line-height: .96;
+      margin-bottom: 25px;
+      max-width: 900px;
     }
-    textarea::placeholder { color: rgba(242,236,223,.38); }
-    .journal-meta { display: flex; justify-content: space-between; gap: 1rem; margin-top: .5rem; color: rgba(242,236,223,.52); font-size: .76rem; }
-    .text-button { padding: 0; border: 0; color: inherit; background: transparent; text-decoration: underline; cursor: pointer; }
+    .section-title em { font-weight: 400; color: var(--gold); }
+    .section-intro { max-width: 650px; color: var(--muted); line-height: 1.75; font-size: 1.03rem; }
 
-    .future {
+    .manifesto { border-top: 1px solid var(--line); }
+    .manifesto-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 9vw; }
+    .manifesto-sticky { position: sticky; top: 130px; align-self: start; }
+    .manifesto-no { font-family: var(--serif); font-size: 5rem; color: rgba(205, 177, 141, .24); line-height: 1; }
+    .principles { counter-reset: principle; }
+    .principle {
+      counter-increment: principle;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 7vw, 6rem);
-      align-items: center;
-      padding: 6rem 0;
+      grid-template-columns: 55px 1fr;
+      gap: 25px;
+      padding: 38px 0;
       border-top: 1px solid var(--line);
     }
-    .future h2 { margin: 0; font-size: clamp(2.4rem, 5vw, 5rem); line-height: 1; }
-    .future p { color: var(--muted); }
-    .future-card { padding: clamp(1.4rem, 4vw, 2.4rem); border: 1px solid var(--line); border-radius: 24px; background: rgba(242,236,223,.05); }
-    .future-card strong { display: block; color: var(--gold); font-family: Georgia, "Times New Roman", serif; font-size: 1.45rem; font-weight: 400; }
-    footer { display: flex; justify-content: space-between; gap: 1rem; padding: 2rem 0; border-top: 1px solid var(--line); color: rgba(242,236,223,.52); font-size: .78rem; }
+    .principle:last-child { border-bottom: 1px solid var(--line); }
+    .principle::before { content: "0" counter(principle); color: var(--gold); font-size: .65rem; letter-spacing: .1em; padding-top: 7px; }
+    .principle h3 { font-family: var(--serif); font-size: clamp(1.6rem, 2.8vw, 2.35rem); font-weight: 400; margin-bottom: 12px; }
+    .principle p { color: var(--muted); line-height: 1.7; max-width: 580px; margin-bottom: 0; }
 
-    @media (max-width: 820px) {
-      .hero, .principle, .future { grid-template-columns: 1fr; }
-      .hero { padding-top: 2.5rem; }
-      .hero-art { min-height: 420px; }
-      .principle { gap: 1rem; }
-      .experience { min-height: 720px; border-radius: 22px; }
-      .stage-area { min-height: 580px; padding: 2.2rem 1.2rem; }
-      .step span { font-size: .58rem; }
+    .path { overflow: hidden; }
+    .path::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      width: 70vw;
+      height: 70vw;
+      border: 1px solid rgba(205, 177, 141, .06);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
     }
-    @media (max-width: 520px) {
-      .shell { width: min(100% - 1.2rem, 1180px); }
-      .nav { align-items: flex-start; padding: 1rem 0; }
-      .hero-art { min-height: 350px; border-radius: 44% 44% 18px 18px; }
-      .experience-top { align-items: flex-start; }
-      .stage-label { max-width: 160px; }
-      .stepper { padding-inline: .45rem; gap: 0; }
-      .step { padding-inline: .28rem; }
-      .panel-actions .button { width: 100%; }
-      footer { flex-direction: column; }
+    .path-head { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 58px; }
+    .path-head .section-intro { max-width: 430px; }
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .project-card {
+      min-height: 310px;
+      border: 0;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.008);
+      text-align: left;
+      padding: 30px;
+      position: relative;
+      cursor: pointer;
+      transition: background .35s ease;
     }
+    .project-card:hover, .project-card:focus-visible { background: rgba(205, 177, 141, .055); outline: 0; }
+    .project-card .project-no { font-size: .63rem; letter-spacing: .16em; color: var(--gold); }
+    .project-symbol { height: 115px; display: grid; place-items: center; }
+    .project-symbol span { display: block; transition: transform .4s ease, border-color .4s ease; }
+    .project-card:hover .project-symbol span { transform: scale(1.08) rotate(3deg); border-color: var(--gold); }
+    .shape-room { width: 56px; height: 56px; border: 1px solid var(--line); box-shadow: inset 11px 11px 0 rgba(205, 177, 141, .08); }
+    .shape-card { width: 68px; height: 42px; border: 1px solid var(--line); transform: perspective(80px) rotateY(-12deg); }
+    .shape-quiet { width: 65px; height: 65px; border-radius: 50%; border: 1px solid var(--line); box-shadow: 0 0 30px rgba(205, 177, 141, .12); }
+    .shape-sequence { width: 77px; height: 46px; border: 1px solid var(--line); box-shadow: 9px 9px 0 -1px var(--ink), 9px 9px 0 0 var(--line), 18px 18px 0 -1px var(--ink), 18px 18px 0 0 var(--line); }
+    .shape-ai { width: 66px; height: 66px; border: 1px dashed var(--line); border-radius: 50% 50% 8px 50%; }
+    .shape-lab { width: 68px; height: 68px; border: 1px solid var(--line); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+    .project-card h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; margin-bottom: 9px; }
+    .project-card p { color: var(--muted); line-height: 1.55; font-size: .87rem; max-width: 260px; margin-bottom: 0; }
+    .project-card::after { content: "+"; position: absolute; right: 24px; bottom: 24px; color: var(--gold); font-size: 1.2rem; }
+
+    .map { background: var(--cream); color: var(--ink); overflow: hidden; }
+    .map .section-kicker { color: #795f43; }
+    .map .section-intro { color: rgba(7, 16, 13, .62); }
+    .map-grid { margin-top: 70px; display: grid; grid-template-columns: .95fr 1.05fr; min-height: 650px; border: 1px solid rgba(7,16,13,.15); }
+    .module-list { border-right: 1px solid rgba(7,16,13,.15); }
+    .module-button {
+      width: 100%;
+      min-height: 54px;
+      border: 0;
+      border-bottom: 1px solid rgba(7,16,13,.12);
+      background: transparent;
+      color: rgba(7,16,13,.52);
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 46px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      text-align: left;
+      transition: background .2s ease, color .2s ease;
+    }
+    .module-button:last-child { border-bottom: 0; }
+    .module-button:hover { background: rgba(7,16,13,.035); color: var(--ink); }
+    .module-button.active { background: var(--ink); color: var(--cream); }
+    .module-button .num { font-size: .64rem; letter-spacing: .1em; }
+    .module-button .name { font-size: .82rem; }
+    .module-button .arrow { opacity: 0; transform: translateX(-5px); transition: opacity .2s ease, transform .2s ease; }
+    .module-button.active .arrow { opacity: 1; transform: translateX(0); color: var(--gold); }
+    .module-view { padding: clamp(35px, 6vw, 80px); display: flex; flex-direction: column; justify-content: space-between; background: radial-gradient(circle at 85% 10%, rgba(205,177,141,.24), transparent 16rem); }
+    .module-view .big-num { font-family: var(--serif); font-size: clamp(6rem, 15vw, 12rem); letter-spacing: -.08em; color: rgba(7,16,13,.09); line-height: .75; }
+    .module-view h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 4vw, 4.2rem); letter-spacing: -.04em; line-height: .98; max-width: 520px; margin-bottom: 22px; }
+    .module-view p { color: rgba(7,16,13,.62); line-height: 1.7; max-width: 530px; }
+    .module-meta { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(7,16,13,.14); padding-top: 18px; font-size: .65rem; text-transform: uppercase; letter-spacing: .14em; color: rgba(7,16,13,.52); }
+    .module-meta span:last-child { color: #795f43; }
+
+    .logbook { background: var(--ink-2); }
+    .logbook-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 7vw; align-items: start; }
+    .logbook-copy { position: sticky; top: 130px; }
+    .progress-ring {
+      margin-top: 42px;
+      width: 130px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--gold) var(--progress, 0%), var(--faint) 0);
+      position: relative;
+    }
+    .progress-ring::after { content: ""; position: absolute; inset: 8px; border-radius: inherit; background: var(--ink-2); }
+    .progress-value { position: relative; z-index: 1; font-family: var(--serif); font-size: 2rem; }
+    .progress-caption { color: var(--muted); font-size: .7rem; margin-top: 14px; letter-spacing: .12em; text-transform: uppercase; }
+    .intention-card, .checklist { border: 1px solid var(--line); background: rgba(255,255,255,.018); }
+    .intention-card { padding: 28px; margin-bottom: 18px; }
+    .intention-card label { display: block; color: var(--gold); letter-spacing: .14em; font-size: .63rem; text-transform: uppercase; margin-bottom: 14px; }
+    .intention-row { display: flex; gap: 10px; }
+    .intention-row input {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: var(--cream);
+      padding: 11px 0;
+      outline: 0;
+    }
+    .intention-row input:focus { border-color: var(--gold); }
+    .intention-row input::placeholder { color: rgba(240,232,218,.28); }
+    .save-intention { border: 1px solid var(--line); background: transparent; border-radius: 50%; min-width: 44px; height: 44px; cursor: pointer; transition: background .2s ease; }
+    .save-intention:hover { background: var(--gold-soft); }
+    .local-note { color: rgba(240,232,218,.34); font-size: .65rem; margin: 12px 0 0; }
+    .checklist { overflow: hidden; }
+    .check-row {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: var(--cream);
+      text-align: left;
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 21px 23px;
+      cursor: pointer;
+      transition: background .2s ease;
+    }
+    .check-row:last-child { border-bottom: 0; }
+    .check-row:hover { background: rgba(205,177,141,.045); }
+    .check-box { width: 23px; height: 23px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; transition: background .25s ease, border-color .25s ease; }
+    .check-box svg { width: 12px; opacity: 0; transform: scale(.4); transition: opacity .25s ease, transform .25s ease; }
+    .check-row.done .check-box { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    .check-row.done .check-box svg { opacity: 1; transform: scale(1); }
+    .check-row.done .check-label { color: var(--muted); text-decoration: line-through; }
+    .check-label { font-size: .9rem; line-height: 1.45; }
+    .check-time { color: rgba(240,232,218,.32); font-size: .63rem; letter-spacing: .08em; }
+    .completion-message { display: none; margin-top: 18px; color: var(--gold); font-family: var(--serif); font-size: 1.5rem; }
+    .completion-message.show { display: block; animation: rise .5s ease both; }
+
+    .protected { min-height: 85vh; display: grid; place-items: center; overflow: hidden; }
+    .protected::before {
+      content: "";
+      position: absolute;
+      width: min(780px, 90vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(205,177,141,.1);
+      box-shadow: 0 0 0 55px rgba(205,177,141,.025), 0 0 0 120px rgba(205,177,141,.018), inset 0 0 100px rgba(205,177,141,.03);
+    }
+    .protected-stars { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .star { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: var(--cream); opacity: .3; animation: pulse var(--d, 4s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
+    @keyframes pulse { 50% { opacity: .08; transform: scale(.5); } }
+    .protected-inner { position: relative; z-index: 2; text-align: center; max-width: 760px; }
+    .lock-symbol {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 30px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+    }
+    .lock-symbol svg { width: 18px; }
+    .protected h2 { font-family: var(--serif); font-size: clamp(3rem, 7vw, 7rem); line-height: .94; letter-spacing: -.05em; font-weight: 400; margin-bottom: 26px; }
+    .protected h2 em { display: block; color: var(--gold); font-weight: 400; }
+    .protected p { max-width: 610px; margin-inline: auto; color: var(--muted); line-height: 1.75; }
+    .protected-rule { width: 100px; height: 1px; background: var(--gold); margin: 34px auto; }
+    .protected-note { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold) !important; }
+
+    footer { padding: 42px 0; border-top: 1px solid var(--line); }
+    .footer-grid { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; color: rgba(240,232,218,.38); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
+    .footer-grid .brand { justify-self: center; color: var(--cream); }
+    .footer-grid > :last-child { justify-self: end; }
+
+    dialog {
+      width: min(610px, calc(100% - 32px));
+      border: 1px solid var(--line);
+      background: #0a1712;
+      color: var(--cream);
+      padding: 0;
+      box-shadow: 0 50px 120px rgba(0,0,0,.65);
+    }
+    dialog::backdrop { background: rgba(3,7,6,.78); backdrop-filter: blur(10px); }
+    .dialog-inner { padding: clamp(30px, 6vw, 58px); }
+    .dialog-close { position: absolute; top: 18px; right: 18px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+    .dialog-label { color: var(--gold); font-size: .64rem; letter-spacing: .18em; margin-bottom: 20px; }
+    .dialog-inner h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.5rem, 6vw, 4rem); letter-spacing: -.04em; margin-bottom: 22px; }
+    .dialog-inner p { color: var(--muted); line-height: 1.7; }
+    .dialog-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+
+    .project-dialog h3 { margin-bottom: 16px; }
+    .project-dialog .project-outcome { color: var(--cream); font-family: var(--serif); font-size: 1.35rem; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+
+    @media (max-width: 920px) {
+      .shell { width: min(100% - 32px, 720px); }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { padding-top: 115px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-copy-wrap { position: relative; z-index: 3; }
+      .room-wrap { min-height: 470px; margin-top: -55px; opacity: .9; }
+      .room { width: min(520px, 88vw); }
+      .manifesto-grid, .logbook-grid { grid-template-columns: 1fr; gap: 55px; }
+      .manifesto-sticky, .logbook-copy { position: static; }
+      .project-grid { grid-template-columns: repeat(2, 1fr); }
+      .map-grid { grid-template-columns: 1fr; }
+      .module-list { border-right: 0; border-bottom: 1px solid rgba(7,16,13,.15); display: grid; grid-template-columns: repeat(2, 1fr); }
+      .module-button:nth-last-child(2) { border-bottom: 0; }
+      .module-button:nth-child(odd) { border-right: 1px solid rgba(7,16,13,.12); }
+      .module-view { min-height: 480px; }
+      .path-head { display: block; }
+      .path-head .section-intro { margin-top: 24px; }
+    }
+
+    @media (max-width: 580px) {
+      .nav-inner { min-height: 70px; }
+      .brand-text { font-size: .68rem; }
+      .nav-cta { padding: 9px 12px; }
+      h1 { font-size: clamp(3.6rem, 20vw, 5.6rem); }
+      .hero { padding-bottom: 25px; }
+      .room-wrap { min-height: 385px; margin-top: -35px; }
+      .room-wrap::before { display: none; }
+      section { padding: 90px 0; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card { min-height: 265px; }
+      .module-list { grid-template-columns: 1fr; max-height: 315px; overflow: auto; }
+      .module-button, .module-button:nth-child(odd), .module-button:nth-last-child(2) { border-right: 0; border-bottom: 1px solid rgba(7,16,13,.12); }
+      .module-view { padding: 32px 25px; min-height: 430px; }
+      .intention-row { display: grid; grid-template-columns: 1fr auto; }
+      .check-row { grid-template-columns: 30px 1fr; }
+      .check-time { display: none; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+      .footer-grid .brand, .footer-grid > :last-child { justify-self: center; }
+      .protected { min-height: 75vh; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .rain { display: none; }
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .room { transform: none !important; }
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#experience">Skip to the experience</a>
-  <header class="shell nav">
-    <a class="brand" href="index.html">AUCOSMOS</a>
-    <a class="back" href="index.html">← Return home</a>
-  </header>
+  <a class="skip-link" href="#main">Skip to the lab</a>
 
-  <main>
-    <section class="shell hero" aria-labelledby="page-title">
-      <div>
-        <p class="eyebrow">AUCOSMOS presents · by awerealities</p>
-        <h1 id="page-title">The 99 Names XR Experience</h1>
-        <p class="hero-copy">A quiet spatial reflection on the Most Beautiful Names of Allah—beginning with Ar‑Rahman and Ar‑Rahim.</p>
-        <div class="actions">
-          <a class="button" href="#experience">Enter the web preview <span aria-hidden="true">↓</span></a>
-          <a class="button secondary" href="#about">Read the intention</a>
-        </div>
+  <nav class="nav" aria-label="Main navigation">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top" aria-label="AUCOSMOS Indie XR Lab home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">AU&thinsp;COSMOS / XR LAB</span>
+      </a>
+      <div class="nav-links">
+        <a href="#principles">Standard</a>
+        <a href="#path">Practice</a>
+        <a href="#map">Course map</a>
+        <a class="nav-cta" href="#logbook">Open logbook</a>
       </div>
-      <div class="hero-art" role="img" aria-label="Concept artwork for the 99 Names XR environment"></div>
-    </section>
+    </div>
+  </nav>
 
-    <section class="shell principle" id="about">
-      <div>
-        <p class="eyebrow">The intention</p>
-        <h2>Technology as a doorway to tafakkur.</h2>
-      </div>
-      <p>This is not a game, and the Names are not treated as features. The experience is a gentle prototype for slowing down, learning a meaning, reflecting, and returning to remembrance. It does not replace worship, study, duʿa, or the guidance of trusted scholarship.</p>
-    </section>
-
-    <section class="shell experience-wrap" id="experience" aria-labelledby="experience-title">
-      <div class="experience-head">
-        <p class="eyebrow">Interactive prototype</p>
-        <h2 id="experience-title">A first glimpse before XR.</h2>
-        <p>Move through four quiet stages. Your reflection remains on this device, in this browser.</p>
-      </div>
-
-      <div class="experience" data-stage="0">
-        <div class="rain" aria-hidden="true"></div>
-        <div class="experience-top">
-          <span class="stage-label" id="stage-status" aria-live="polite">Stage 1 of 4 · Threshold</span>
-          <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false">Rain ambience: off</button>
+  <main id="main">
+    <header class="hero" id="top">
+      <div class="shell hero-grid">
+        <div class="hero-copy-wrap">
+          <p class="eyebrow">A free, source-grounded XR course</p>
+          <h1>Begin<br><span>smaller.</span></h1>
+          <p class="hero-copy">Before the sacred world, build one honest room. Before the ambitious experience, make one floating card work. The Indie XR Lab is where careful practice becomes meaningful technology.</p>
+          <div class="hero-actions">
+            <button class="button primary" type="button" data-open-begin>
+              Enter the empty room <span class="button-arrow" aria-hidden="true">→</span>
+            </button>
+            <a class="button secondary" href="#map">Explore 12 modules</a>
+          </div>
         </div>
 
-        <nav class="stepper" aria-label="Experience stages">
-          <button class="step" type="button" data-go="0" aria-current="step"><span>01 · Threshold</span></button>
-          <button class="step" type="button" data-go="1"><span>02 · Ar‑Rahman</span></button>
-          <button class="step" type="button" data-go="2"><span>03 · Ar‑Rahim</span></button>
-          <button class="step" type="button" data-go="3"><span>04 · Remember</span></button>
-        </nav>
-
-        <div class="stage-area">
-          <section class="panel is-active" data-panel="0" aria-labelledby="threshold-title">
-            <p class="eyebrow">Before you enter</p>
-            <h3 id="threshold-title">Arrive gently.</h3>
-            <p class="reflection">Let the page become quieter than the rest of the internet. Take one unhurried breath. Continue when you are ready to reflect.</p>
-            <div class="panel-actions">
-              <button class="button" type="button" data-next>Begin with Ar‑Rahman</button>
-            </div>
-            <p class="private-note">Keyboard: use ← and → to move between stages.</p>
-          </section>
-
-          <section class="panel" data-panel="1" aria-labelledby="rahman-title" hidden>
-            <p class="arabic" lang="ar">ٱلرَّحْمَٰنُ</p>
-            <h3 class="transliteration" id="rahman-title">Ar‑Rahman</h3>
-            <p class="meaning">The Universally Merciful</p>
-            <p class="reflection">Mercy vast enough to surround creation: given before we notice it, present in what sustains, shelters, and allows life to unfold.</p>
-            <p class="prompt">Notice one mercy that reached you without being earned or planned.</p>
-            <div class="panel-actions">
-              <button class="button secondary" type="button" data-prev>Back</button>
-              <button class="button" type="button" data-next>Continue to Ar‑Rahim</button>
-            </div>
-          </section>
-
-          <section class="panel" data-panel="2" aria-labelledby="rahim-title" hidden>
-            <p class="arabic" lang="ar">ٱلرَّحِيمُ</p>
-            <h3 class="transliteration" id="rahim-title">Ar‑Rahim</h3>
-            <p class="meaning">The Especially Merciful</p>
-            <p class="reflection">Mercy felt as near, continuous care: not only surrounding life, but meeting a person within the details of it.</p>
-            <p class="prompt">Recall one moment in which mercy felt personal and near.</p>
-            <div class="panel-actions">
-              <button class="button secondary" type="button" data-prev>Back</button>
-              <button class="button" type="button" data-next>Carry it with you</button>
-            </div>
-          </section>
-
-          <section class="panel" data-panel="3" aria-labelledby="remember-title" hidden>
-            <p class="eyebrow">A private reflection</p>
-            <h3 id="remember-title">What do you want to remember?</h3>
-            <div class="journal">
-              <label for="reflection">Write a sentence for yourself. It is saved only in this browser.</label>
-              <textarea id="reflection" maxlength="1200" placeholder="A mercy I want to remember…"></textarea>
-              <div class="journal-meta">
-                <span id="save-status" aria-live="polite">Not saved yet</span>
-                <button class="text-button" id="clear-reflection" type="button">Clear reflection</button>
+        <div class="room-wrap" aria-label="Interactive empty room prototype">
+          <div class="room" id="room">
+            <div class="room-halo" aria-hidden="true"></div>
+            <div class="room-stage">
+              <div class="light-line" aria-hidden="true"></div>
+              <div class="spatial-card">
+                <div>
+                  <small>PROJECT 01</small>
+                  <strong>One room.<br>One light.<br>One proof.</strong>
+                </div>
               </div>
+              <span class="room-label">THE EMPTY ROOM / SCALE 1:1</span>
             </div>
-            <div class="panel-actions">
-              <button class="button secondary" type="button" data-prev>Back</button>
-              <button class="button quiet" type="button" id="restart">Return to the threshold</button>
-            </div>
-          </section>
+            <button class="room-toggle" id="roomToggle" type="button" aria-label="Turn on the room light" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2v9m6.36-6.36a9 9 0 1 1-12.72 0"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-index" aria-hidden="true">SCROLL TO ENTER</div>
+    </header>
+
+    <section class="manifesto" id="principles">
+      <div class="shell manifesto-grid">
+        <div class="manifesto-sticky reveal">
+          <p class="section-kicker">The lab standard</p>
+          <h2 class="section-title">Build with <em>evidence.</em></h2>
+          <p class="section-intro">This is not a collection of scattered tutorials. Every reliable lesson leaves a trace: a test, a screenshot, a mistake understood.</p>
+          <div class="manifesto-no" aria-hidden="true">01</div>
+        </div>
+        <div class="principles">
+          <article class="principle reveal">
+            <div><h3>Test before teaching.</h3><p>No workflow is called reliable until it has been tried on the actual setup.</p></div>
+          </article>
+          <article class="principle reveal">
+            <div><h3>Make the small thing work.</h3><p>A stable prototype is more valuable than an ambitious scene held together by guesses.</p></div>
+          </article>
+          <article class="principle reveal">
+            <div><h3>Document the confusion.</h3><p>The moment that slowed you down may become the clearest lesson for the next beginner.</p></div>
+          </article>
+          <article class="principle reveal">
+            <div><h3>Protect what is sacred.</h3><p>Sensitive ideas are not technical sandboxes. Readiness comes before scale, spectacle, or publication.</p></div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="shell future">
-      <div>
-        <p class="eyebrow">The future XR version</p>
-        <h2>From screen to spatial presence.</h2>
-        <p>The full prototype is being developed for Meta Quest 3: a warm sand floor, deep green space, soft cream text, rain, light, and two readable stations for Ar‑Rahman and Ar‑Rahim.</p>
+    <section class="path" id="path">
+      <div class="shell">
+        <div class="path-head reveal">
+          <div>
+            <p class="section-kicker">The practice before the project</p>
+            <h2 class="section-title">Six rooms<br>to <em>readiness.</em></h2>
+          </div>
+          <p class="section-intro">Each prototype isolates one skill. Together, they become a calm, repeatable way to build.</p>
+        </div>
+
+        <div class="project-grid reveal">
+          <button class="project-card" type="button" data-project="0">
+            <span class="project-no">01 / FOUNDATION</span>
+            <div class="project-symbol"><span class="shape-room"></span></div>
+            <h3>The Empty Room</h3>
+            <p>Learn scale, light, hierarchy, and the discipline of saving a clean scene.</p>
+          </button>
+          <button class="project-card" type="button" data-project="1">
+            <span class="project-no">02 / READABILITY</span>
+            <div class="project-symbol"><span class="shape-card"></span></div>
+            <h3>The Floating Card</h3>
+            <p>Place spatial text where a human body can read it comfortably.</p>
+          </button>
+          <button class="project-card" type="button" data-project="2">
+            <span class="project-no">03 / COMPLETION</span>
+            <div class="project-symbol"><span class="shape-quiet"></span></div>
+            <h3>The Quiet Room</h3>
+            <p>Finish one small, calm experience with a single interaction.</p>
+          </button>
+          <button class="project-card" type="button" data-project="3">
+            <span class="project-no">04 / SEQUENCE</span>
+            <div class="project-symbol"><span class="shape-sequence"></span></div>
+            <h3>The Spatial Carousel</h3>
+            <p>Turn a familiar story format into a walkable progression.</p>
+          </button>
+          <button class="project-card" type="button" data-project="4">
+            <span class="project-no">05 / INQUIRY</span>
+            <div class="project-symbol"><span class="shape-ai"></span></div>
+            <h3>What Does AI Extend?</h3>
+            <p>Explore AI as a thinking aid while verifying every technical claim.</p>
+          </button>
+          <button class="project-card" type="button" data-project="5">
+            <span class="project-no">06 / EVIDENCE</span>
+            <div class="project-symbol"><span class="shape-lab"></span></div>
+            <h3>The Lab Demo</h3>
+            <p>Shape the tested journey into a public proof of learning.</p>
+          </button>
+        </div>
       </div>
-      <div class="future-card">
-        <strong>Prototype 01</strong>
-        <p>Two Names. Two stations. One calm environment. Built slowly, with sincerity, careful learning, and Islamic verification.</p>
+    </section>
+
+    <section class="map" id="map">
+      <div class="shell">
+        <p class="section-kicker reveal">Starter course / v0.1</p>
+        <h2 class="section-title reveal">From first setup<br>to working <em>prototype.</em></h2>
+        <p class="section-intro reveal">Twelve modules for a Quest 3, Mac, Unity, and AI-assisted indie workflow. Select a module to reveal its purpose.</p>
+
+        <div class="map-grid reveal">
+          <div class="module-list" id="moduleList" aria-label="Course modules"></div>
+          <article class="module-view" aria-live="polite">
+            <div class="big-num" id="moduleNum">00</div>
+            <div>
+              <h3 id="moduleTitle">Orientation</h3>
+              <p id="moduleDescription">Understand XR, define the lab intention, create the learning log, and set the standard for source-grounded experimentation.</p>
+            </div>
+            <div class="module-meta"><span id="moduleMeta">Module 0 of 12</span><span>Outcome, not overwhelm</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="logbook" id="logbook">
+      <div class="shell logbook-grid">
+        <div class="logbook-copy reveal">
+          <p class="section-kicker">Your first 20 minutes</p>
+          <h2 class="section-title">Leave<br><em>evidence.</em></h2>
+          <p class="section-intro">A course becomes real when the learner can point to what changed. Begin with a tiny session and let the logbook remember your progress on this device.</p>
+          <div class="progress-ring" id="progressRing" aria-label="0 percent complete">
+            <span class="progress-value" id="progressValue">0%</span>
+          </div>
+          <p class="progress-caption">First session complete</p>
+        </div>
+
+        <div class="reveal">
+          <form class="intention-card" id="intentionForm">
+            <label for="intentionInput">One-line intention for this lab</label>
+            <div class="intention-row">
+              <input id="intentionInput" maxlength="120" autocomplete="off" placeholder="I want to learn how to…">
+              <button class="save-intention" type="submit" aria-label="Save intention">→</button>
+            </div>
+            <p class="local-note" id="intentionNote">Saved only in this browser.</p>
+          </form>
+
+          <div class="checklist" id="checklist" aria-label="First session checklist">
+            <button class="check-row" type="button" data-check="0">
+              <span class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8 3 3 7-7"/></svg></span>
+              <span class="check-label">Create a learning-log page and date it.</span>
+              <span class="check-time">03 MIN</span>
+            </button>
+            <button class="check-row" type="button" data-check="1">
+              <span class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8 3 3 7-7"/></svg></span>
+              <span class="check-label">Write down the headset, computer, and Unity version.</span>
+              <span class="check-time">04 MIN</span>
+            </button>
+            <button class="check-row" type="button" data-check="2">
+              <span class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8 3 3 7-7"/></svg></span>
+              <span class="check-label">Create one clean folder for the lab.</span>
+              <span class="check-time">03 MIN</span>
+            </button>
+            <button class="check-row" type="button" data-check="3">
+              <span class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8 3 3 7-7"/></svg></span>
+              <span class="check-label">Name the smallest prototype you want to finish first.</span>
+              <span class="check-time">05 MIN</span>
+            </button>
+            <button class="check-row" type="button" data-check="4">
+              <span class="check-box"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8 3 3 7-7"/></svg></span>
+              <span class="check-label">Record one question before opening Unity.</span>
+              <span class="check-time">05 MIN</span>
+            </button>
+          </div>
+          <p class="completion-message" id="completionMessage">The room is no longer empty. It contains evidence.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="protected" id="protected">
+      <div class="protected-stars" id="starField" aria-hidden="true"></div>
+      <div class="shell protected-inner reveal">
+        <div class="lock-symbol" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5" y="10" width="14" height="10" rx="1"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        </div>
+        <p class="section-kicker">Protected horizon</p>
+        <h2>The 99 Names <em>wait here.</em></h2>
+        <p>Not because the vision is small, but because it deserves more than technical improvisation. First: competence, care, source verification, and the ability to finish the quiet rooms that come before it.</p>
+        <div class="protected-rule"></div>
+        <p class="protected-note">Readiness is part of the intention.</p>
       </div>
     </section>
   </main>
 
-  <footer class="shell">
-    <span>© 2026 AUCOSMOS</span>
-    <span>Reflect deeply. Build meaningfully.</span>
+  <footer>
+    <div class="shell footer-grid">
+      <span>Starter course v0.1</span>
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>AU&thinsp;COSMOS</span></a>
+      <span>Last verified 02.07.2026</span>
+    </div>
   </footer>
 
+  <dialog id="beginDialog">
+    <div class="dialog-inner">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+      <p class="dialog-label">MODULE 0 / ORIENTATION</p>
+      <h3>Begin with intention.</h3>
+      <p>Open a blank page. Write today’s date, your setup, and one honest sentence about what you hope to learn. That page—not an impressive scene—is the first artifact of the lab.</p>
+      <div class="dialog-actions">
+        <a class="button primary" href="#logbook" data-close-dialog>Open the logbook <span class="button-arrow">→</span></a>
+        <a class="button secondary" href="#path" data-close-dialog>See the six projects</a>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="projectDialog" class="project-dialog">
+    <div class="dialog-inner">
+      <button class="dialog-close" type="button" data-close-project aria-label="Close">×</button>
+      <p class="dialog-label" id="projectLabel">PROJECT 01</p>
+      <h3 id="projectTitle">The Empty Room</h3>
+      <p class="project-outcome" id="projectOutcome">A correctly scaled, saved scene with one calm light.</p>
+      <p id="projectDetail">Practice hierarchy, spatial scale, and the discipline of naming and saving a scene before adding complexity.</p>
+    </div>
+  </dialog>
+
   <script>
-    (() => {
-      const experience = document.querySelector('.experience');
-      const panels = [...document.querySelectorAll('[data-panel]')];
-      const steps = [...document.querySelectorAll('[data-go]')];
-      const status = document.getElementById('stage-status');
-      const soundToggle = document.getElementById('sound-toggle');
-      const reflection = document.getElementById('reflection');
-      const saveStatus = document.getElementById('save-status');
-      const storageKey = 'aucosmos-99-names-reflection-v1';
-      const names = ['Threshold', 'Ar‑Rahman', 'Ar‑Rahim', 'Remember'];
-      let stage = 0;
-      let visited = 0;
-      let audioContext = null;
-      let rainSource = null;
-      let saveTimer = null;
+    const modules = [
+      ["Orientation", "Understand XR, define the lab intention, create the learning log, and set the standard for source-grounded experimentation."],
+      ["Accounts, Hardware & Setup", "Confirm eligibility, create or verify the required accounts, install core tools, and prepare the Quest, Mac, and Unity workflow."],
+      ["Unity Foundations", "Learn the Unity interface, GameObjects, transforms, materials, lights, cameras, prefabs, packages, and project organization."],
+      ["First XR Scene", "Create a correctly scaled standing space with an XR camera origin, a comfort-aware layout, and simulator testing."],
+      ["Spatial UI", "Create readable world-space cards with TextMeshPro, good distance, contrast, hierarchy, and comfort rules."],
+      ["Interaction Basics", "Add gaze, controller ray, proximity reveal, simple hover and click states, and gentle animation feedback."],
+      ["XR Environment Design", "Build optimized atmospheric spaces using URP, simple lighting, materials, skybox, sound, and performance-aware beauty."],
+      ["AI-Assisted XR Workflow", "Use AI for concepts, troubleshooting, documentation, and code explanation while verifying every technical claim."],
+      ["Build, Test, Debug", "Create APK builds, connect to Quest, run tests, capture issues, and document reproducible fixes."],
+      ["Mini Project: Quiet Room", "Build a small, non-sacred reflection room with one spatial card and one interaction."],
+      ["Spatial Learning Gallery", "Turn a simple educational idea into a spatial sequence of cards, objects, and user movement."],
+      ["AUCOSMOS XR Lab Demo", "Create a portfolio-ready lab environment that explains the learning journey."],
+      ["Course Packaging", "Turn the tested journey into a clean free course with lessons, screenshots, checklists, and versioned updates."]
+    ];
 
-      function buildRain() {
-        const rain = document.querySelector('.rain');
-        const fragment = document.createDocumentFragment();
-        for (let i = 0; i < 64; i += 1) {
-          const drop = document.createElement('i');
-          drop.className = 'drop';
-          drop.style.left = `${Math.random() * 100}%`;
-          drop.style.setProperty('--length', `${45 + Math.random() * 100}px`);
-          drop.style.setProperty('--speed', `${1.05 + Math.random() * 1.4}s`);
-          drop.style.setProperty('--delay', `${-Math.random() * 2.6}s`);
-          drop.style.opacity = String(.18 + Math.random() * .58);
-          fragment.appendChild(drop);
-        }
-        rain.appendChild(fragment);
-      }
+    const projects = [
+      ["PROJECT 01 / FOUNDATION", "The Empty Room", "A correctly scaled, saved scene with one calm light.", "Practice hierarchy, spatial scale, and the discipline of naming and saving a scene before adding complexity."],
+      ["PROJECT 02 / READABILITY", "The Floating Card", "One spatial card that remains legible and comfortable.", "Test distance, type size, contrast, depth, and the difference between placing text and designing for a body in space."],
+      ["PROJECT 03 / COMPLETION", "The Quiet Room", "A complete calm experience with one interaction.", "Bring environment, interface, and interaction together. Keep the scope small enough to build, test, and finish."],
+      ["PROJECT 04 / SEQUENCE", "The Spatial Carousel", "A story the visitor moves through instead of swiping.", "Translate a known visual rhythm into space while respecting pacing, orientation, and comfort."],
+      ["PROJECT 05 / INQUIRY", "What Does AI Extend?", "An educational XR idea that examines its own tool.", "Use AI to clarify, explain, and generate possibilities—then mark what was verified and what remains an assumption."],
+      ["PROJECT 06 / EVIDENCE", "The AUCOSMOS Lab Demo", "A public-facing proof of learning, not a promise of mastery.", "Package the tested artifacts, mistakes, and improvements into an honest environment that helps another beginner begin."]
+    ];
 
-      function showStage(nextStage, moveFocus = true) {
-        stage = Math.max(0, Math.min(3, Number(nextStage)));
-        visited = Math.max(visited, stage);
-        experience.dataset.stage = String(stage);
-        panels.forEach((panel, index) => {
-          const active = index === stage;
-          panel.classList.toggle('is-active', active);
-          panel.hidden = !active;
-        });
-        steps.forEach((step, index) => {
-          step.toggleAttribute('aria-current', index === stage);
-          if (index === stage) step.setAttribute('aria-current', 'step');
-          step.classList.toggle('is-visited', index <= visited);
-        });
-        status.textContent = `Stage ${stage + 1} of 4 · ${names[stage]}`;
-        if (moveFocus) {
-          const heading = panels[stage].querySelector('h3');
-          heading.setAttribute('tabindex', '-1');
-          heading.focus({ preventScroll: true });
-        }
-      }
+    const moduleList = document.getElementById("moduleList");
+    const moduleNum = document.getElementById("moduleNum");
+    const moduleTitle = document.getElementById("moduleTitle");
+    const moduleDescription = document.getElementById("moduleDescription");
+    const moduleMeta = document.getElementById("moduleMeta");
 
-      function createRainAudio() {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContext) return false;
-        audioContext = new AudioContext();
-        const seconds = 2;
-        const buffer = audioContext.createBuffer(1, audioContext.sampleRate * seconds, audioContext.sampleRate);
-        const channel = buffer.getChannelData(0);
-        let last = 0;
-        for (let i = 0; i < channel.length; i += 1) {
-          const white = Math.random() * 2 - 1;
-          last = last * .985 + white * .015;
-          channel[i] = (white * .26 + last * 1.8) * .24;
-        }
-        rainSource = audioContext.createBufferSource();
-        rainSource.buffer = buffer;
-        rainSource.loop = true;
-        const filter = audioContext.createBiquadFilter();
-        filter.type = 'lowpass';
-        filter.frequency.value = 3200;
-        const gain = audioContext.createGain();
-        gain.gain.value = .22;
-        rainSource.connect(filter).connect(gain).connect(audioContext.destination);
-        rainSource.start();
-        return true;
-      }
+    modules.forEach((module, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `module-button${index === 0 ? " active" : ""}`;
+      button.innerHTML = `<span class="num">${String(index).padStart(2, "0")}</span><span class="name">${module[0]}</span><span class="arrow">→</span>`;
+      button.setAttribute("aria-pressed", index === 0 ? "true" : "false");
+      button.addEventListener("click", () => selectModule(index));
+      moduleList.appendChild(button);
+    });
 
-      async function toggleSound() {
-        const turningOn = soundToggle.getAttribute('aria-pressed') !== 'true';
-        if (turningOn) {
-          if (!audioContext && !createRainAudio()) {
-            soundToggle.textContent = 'Ambience unavailable';
-            soundToggle.disabled = true;
-            return;
-          }
-          await audioContext.resume();
-          soundToggle.setAttribute('aria-pressed', 'true');
-          soundToggle.textContent = 'Rain ambience: on';
-        } else {
-          await audioContext.suspend();
-          soundToggle.setAttribute('aria-pressed', 'false');
-          soundToggle.textContent = 'Rain ambience: off';
-        }
-      }
-
-      function restoreReflection() {
-        try {
-          const saved = localStorage.getItem(storageKey);
-          if (saved) {
-            reflection.value = saved;
-            saveStatus.textContent = 'Saved in this browser';
-          }
-        } catch (_) {
-          saveStatus.textContent = 'Private saving is unavailable';
-        }
-      }
-
-      steps.forEach(step => step.addEventListener('click', () => showStage(step.dataset.go)));
-      document.querySelectorAll('[data-next]').forEach(button => button.addEventListener('click', () => showStage(stage + 1)));
-      document.querySelectorAll('[data-prev]').forEach(button => button.addEventListener('click', () => showStage(stage - 1)));
-      soundToggle.addEventListener('click', toggleSound);
-      document.getElementById('restart').addEventListener('click', () => showStage(0));
-      document.getElementById('clear-reflection').addEventListener('click', () => {
-        reflection.value = '';
-        try { localStorage.removeItem(storageKey); } catch (_) {}
-        saveStatus.textContent = 'Reflection cleared';
-        reflection.focus();
+    function selectModule(index) {
+      [...moduleList.children].forEach((button, i) => {
+        button.classList.toggle("active", i === index);
+        button.setAttribute("aria-pressed", i === index ? "true" : "false");
       });
-      reflection.addEventListener('input', () => {
-        clearTimeout(saveTimer);
-        saveStatus.textContent = 'Saving…';
-        saveTimer = setTimeout(() => {
-          try {
-            localStorage.setItem(storageKey, reflection.value);
-            saveStatus.textContent = 'Saved in this browser';
-          } catch (_) {
-            saveStatus.textContent = 'Private saving is unavailable';
-          }
-        }, 350);
-      });
-      document.addEventListener('keydown', event => {
-        if (event.target.matches('textarea, input')) return;
-        if (event.key === 'ArrowRight') showStage(stage + 1);
-        if (event.key === 'ArrowLeft') showStage(stage - 1);
-      });
-      window.addEventListener('pagehide', () => {
-        if (rainSource) rainSource.stop();
-        if (audioContext) audioContext.close();
-      });
+      moduleNum.textContent = String(index).padStart(2, "0");
+      moduleTitle.textContent = modules[index][0];
+      moduleDescription.textContent = modules[index][1];
+      moduleMeta.textContent = `Module ${index} of 12`;
+    }
 
-      buildRain();
-      restoreReflection();
-      showStage(0, false);
-    })();
+    const nav = document.querySelector(".nav");
+    addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 24), { passive: true });
+
+    const room = document.getElementById("room");
+    const roomToggle = document.getElementById("roomToggle");
+    roomToggle.addEventListener("click", () => {
+      const lit = room.classList.toggle("is-lit");
+      roomToggle.setAttribute("aria-pressed", String(lit));
+      roomToggle.setAttribute("aria-label", lit ? "Turn off the room light" : "Turn on the room light");
+    });
+
+    const roomWrap = document.querySelector(".room-wrap");
+    roomWrap.addEventListener("pointermove", event => {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const rect = roomWrap.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - .5;
+      const y = (event.clientY - rect.top) / rect.height - .5;
+      room.style.setProperty("--ry", `${x * 7}deg`);
+      room.style.setProperty("--rx", `${y * -7}deg`);
+    });
+    roomWrap.addEventListener("pointerleave", () => {
+      room.style.setProperty("--ry", "0deg");
+      room.style.setProperty("--rx", "0deg");
+    });
+
+    const beginDialog = document.getElementById("beginDialog");
+    document.querySelector("[data-open-begin]").addEventListener("click", () => beginDialog.showModal());
+    document.querySelectorAll("[data-close-dialog]").forEach(element => element.addEventListener("click", () => beginDialog.close()));
+
+    const projectDialog = document.getElementById("projectDialog");
+    document.querySelectorAll("[data-project]").forEach(button => button.addEventListener("click", () => {
+      const project = projects[Number(button.dataset.project)];
+      document.getElementById("projectLabel").textContent = project[0];
+      document.getElementById("projectTitle").textContent = project[1];
+      document.getElementById("projectOutcome").textContent = project[2];
+      document.getElementById("projectDetail").textContent = project[3];
+      projectDialog.showModal();
+    }));
+    document.querySelector("[data-close-project]").addEventListener("click", () => projectDialog.close());
+    [beginDialog, projectDialog].forEach(dialog => dialog.addEventListener("click", event => {
+      if (event.target === dialog) dialog.close();
+    }));
+
+    const STORAGE_KEY = "aucosmos-xr-lab-v01";
+    let state = { checks: [], intention: "" };
+    try { state = { ...state, ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") }; } catch (_) {}
+
+    const checkRows = [...document.querySelectorAll("[data-check]")];
+    const progressRing = document.getElementById("progressRing");
+    const progressValue = document.getElementById("progressValue");
+    const completionMessage = document.getElementById("completionMessage");
+
+    function saveState() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
+    }
+
+    function renderProgress() {
+      checkRows.forEach((row, index) => row.classList.toggle("done", state.checks.includes(index)));
+      const percent = Math.round((state.checks.length / checkRows.length) * 100);
+      progressRing.style.setProperty("--progress", `${percent}%`);
+      progressRing.setAttribute("aria-label", `${percent} percent complete`);
+      progressValue.textContent = `${percent}%`;
+      completionMessage.classList.toggle("show", percent === 100);
+    }
+
+    checkRows.forEach(row => row.addEventListener("click", () => {
+      const index = Number(row.dataset.check);
+      state.checks = state.checks.includes(index) ? state.checks.filter(item => item !== index) : [...state.checks, index].sort();
+      saveState();
+      renderProgress();
+    }));
+
+    const intentionForm = document.getElementById("intentionForm");
+    const intentionInput = document.getElementById("intentionInput");
+    const intentionNote = document.getElementById("intentionNote");
+    intentionInput.value = state.intention || "";
+    intentionForm.addEventListener("submit", event => {
+      event.preventDefault();
+      state.intention = intentionInput.value.trim();
+      saveState();
+      intentionNote.textContent = state.intention ? "Intention saved on this device." : "Saved only in this browser.";
+      setTimeout(() => intentionNote.textContent = "Saved only in this browser.", 2500);
+    });
+    renderProgress();
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach(element => revealObserver.observe(element));
+
+    const starField = document.getElementById("starField");
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < 70; i++) {
+      const star = document.createElement("span");
+      star.className = "star";
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.setProperty("--d", `${3 + Math.random() * 5}s`);
+      star.style.setProperty("--delay", `${Math.random() * -5}s`);
+      if (Math.random() > .8) { star.style.width = star.style.height = "3px"; }
+      fragment.appendChild(star);
+    }
+    starField.appendChild(fragment);
   </script>
 </body>
 </html>
