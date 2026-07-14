@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AUCOSMOS DAILY</title>
+    <meta
+      name="description"
+      content="AUCOSMOS DAILY is a small magazine for looking more carefully at Allah's creation, the human mind, technology, and the future."
+    />
+    <link rel="stylesheet" href="./daily.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">Aucosmos</a>
+      <nav aria-label="Primary">
+        <a href="/#foundation">The Foundation</a>
+        <a href="/#explore">Current Explorations</a>
+        <a href="/#organ-days">Organ Days</a>
+        <a href="/daily/" aria-current="page">AUCOSMOS Daily</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="daily-hero" aria-labelledby="daily-title">
+        <p class="eyebrow">The living archive</p>
+        <h1 id="daily-title">AUCOSMOS DAILY</h1>
+        <p class="lede">One question. One discovery. One moment of tafakkur.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#reader" data-open-latest>Open latest issue</a>
+          <a class="button quiet" href="#archive">Browse archive</a>
+        </div>
+      </section>
+
+      <section class="reader-section" id="reader" aria-labelledby="reader-title">
+        <div class="reader-heading">
+          <div>
+            <p class="eyebrow">Now reading</p>
+            <h2 id="reader-title">AUCOSMOS DAILY / 0002</h2>
+          </div>
+          <label class="issue-picker">
+            <span>Issue</span>
+            <select id="issue-select" aria-label="Choose issue"></select>
+          </label>
+        </div>
+
+        <div class="reader-shell" data-reader>
+          <button class="turn-button previous" type="button" data-prev aria-label="Previous page">
+            <span aria-hidden="true">&larr;</span>
+          </button>
+
+          <div class="magazine-stage" aria-live="polite">
+            <div class="magazine-book" data-book></div>
+          </div>
+
+          <button class="turn-button next" type="button" data-next aria-label="Next page">
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
+
+        <div class="reader-controls">
+          <button class="text-button" type="button" data-prev>Previous</button>
+          <p data-page-status>Cover</p>
+          <button class="text-button" type="button" data-next>Next</button>
+        </div>
+      </section>
+
+      <section class="archive-section" id="archive" aria-labelledby="archive-title">
+        <div class="section-heading">
+          <p class="eyebrow">Archive</p>
+          <h2 id="archive-title">Issues</h2>
+        </div>
+        <div class="archive-grid" data-archive></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>AUCOSMOS DAILY</p>
+      <p>Reflect deeply. Build meaningfully.</p>
+    </footer>
+
+    <script src="./issues.js"></script>
+    <script src="./reader.js"></script>
+  </body>
+</html>
