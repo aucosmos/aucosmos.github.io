@@ -333,6 +333,103 @@
     footer { max-width: 1160px; margin: 0 auto; padding: 30px 20px 52px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-family: Arial, sans-serif; font-size: .9rem; color: var(--soft); }
     footer a { border-bottom: 1px solid rgba(216,189,158,.55); }
 
+    .daily-feature {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 86px;
+      padding: clamp(30px, 4.8vw, 56px);
+      border: 1px solid rgba(216,189,158,.18);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(216,189,158,.18), transparent 32%),
+        radial-gradient(circle at 82% 76%, rgba(108,133,116,.16), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.058), rgba(255,255,255,.018));
+      box-shadow: 0 28px 86px rgba(0,0,0,.25);
+    }
+
+    .daily-feature::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(234,223,210,.075);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .daily-feature__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(260px, .7fr);
+      gap: clamp(24px, 5vw, 56px);
+      align-items: center;
+    }
+
+    .daily-feature h2 {
+      margin-bottom: 18px;
+    }
+
+    .daily-feature__text {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.9vw, 1.28rem);
+      line-height: 1.75;
+    }
+
+    .daily-feature__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      margin-top: 28px;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold-strong), var(--gold));
+      color: #151210;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      font-size: .92rem;
+      letter-spacing: .02em;
+      box-shadow: 0 18px 40px rgba(0,0,0,.23);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .daily-feature__button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 50px rgba(0,0,0,.28);
+    }
+
+    .daily-feature__issue {
+      min-height: 320px;
+      display: grid;
+      align-content: space-between;
+      padding: 26px;
+      border: 1px solid rgba(216,189,158,.22);
+      border-radius: 18px;
+      background:
+        linear-gradient(145deg, rgba(240,214,184,.14), rgba(255,255,255,.035)),
+        rgba(8,8,7,.28);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .daily-feature__issue small,
+    .daily-feature__issue span {
+      font-family: Arial, sans-serif;
+      color: var(--soft);
+      font-size: .76rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .daily-feature__issue strong {
+      display: block;
+      margin: 34px 0;
+      color: #f0e4d6;
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
 
 
     .organ-days-feature {
@@ -425,6 +522,8 @@
       .top-icons { justify-self: start; }
       .hero { background-position: 58% center; }
       .hero-content { padding-right: 20px; }
+      .daily-feature__inner { grid-template-columns: 1fr; }
+      .daily-feature__issue { min-height: 240px; }
       .xr-gateway-section {
       margin-bottom: 74px;
     }
@@ -576,6 +675,7 @@
           <a href="#foundation">The Foundation</a>
           <a href="#explore">Current Explorations</a>
           <a href="#organ-days">Organ Days</a>
+          <a href="#daily">AUCOSMOS Daily</a>
           <a href="#daily-reminder">Daily Reminder</a>
         </nav>
         <div class="top-icons">
@@ -642,6 +742,24 @@
             </span>
             <span class="xr-arrow" aria-hidden="true">↗</span>
           </a>
+        </section>
+
+        <section class="daily-feature" id="daily" aria-label="AUCOSMOS Daily magazine">
+          <div class="daily-feature__inner">
+            <div>
+              <div class="section-label">The living archive</div>
+              <h2>AUCOSMOS DAILY</h2>
+              <p class="daily-feature__text">
+                A small built-in magazine for one question, one discovery, and one moment of tafakkur. Read Issue 0001 and 0002 as turnable pages, with text kept accessible rather than trapped inside images.
+              </p>
+              <a class="daily-feature__button" href="daily/">Open the magazine</a>
+            </div>
+            <a class="daily-feature__issue" href="daily/" aria-label="Open AUCOSMOS Daily Issue 0002">
+              <small>Now reading / Issue 0002</small>
+              <strong>What should remain unrecorded?</strong>
+              <span>Memory · AI · Privacy · Tafakkur</span>
+            </a>
+          </div>
         </section>
 
 
