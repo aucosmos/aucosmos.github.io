@@ -1,5 +1,29 @@
 window.AUCOSMOS_DAILY_ISSUES = [
   {
+    id: "0003",
+    date: "15 July 2026",
+    location: "Agadir, Morocco",
+    title: "Look around.",
+    tags: ["Creation", "Creator", "Attention", "Tafakkur"],
+    pages: [
+      {
+        type: "cover",
+        kicker: "AUCOSMOS DAILY / 0003",
+        title: "Look around.",
+        body: [
+          "Look a little longer.",
+          "Whatever creation you see, think about its creator.",
+          "And if that creator is itself created, look beyond it too.",
+          "Keep going.",
+          "Until your heart reaches the One who was not created.",
+          "The Creator of all things.",
+          "Allah."
+        ],
+        footer: "15 July 2026 / Agadir"
+      }
+    ]
+  },
+  {
     id: "0002",
     date: "14 July 2026",
     location: "Agadir, Morocco",
