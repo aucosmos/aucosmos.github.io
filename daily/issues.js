@@ -1,5 +1,103 @@
 window.AUCOSMOS_DAILY_ISSUES = [
   {
+    id: "0004",
+    date: "21 July 2026",
+    location: "Agadir, Morocco",
+    title: "A moment of tafakkur",
+    tags: ["Tafakkur", "Attention", "Revelation", "Allah", "Response"],
+    pages: [
+      {
+        type: "cover",
+        kicker: "AUCOSMOS DAILY / 0004",
+        title: "A moment of tafakkur",
+        body: [
+          "A disciplined movement from attention, through revelation, toward recognition of Allah—and then back into life as a sincere response."
+        ],
+        footer: "21 July 2026 / Agadir"
+      },
+      {
+        kicker: "01 / Begin",
+        title: "Begin with something real.",
+        body: [
+          "Start with something concrete: rain, grief, a tree, your own breath, an unexpected kindness, or the passage of time.",
+          "This grounds the reflection in an actual encounter rather than an abstract idea. Allow the thing to be present on its own terms. Observe it carefully, patiently, and honestly.",
+          "What is happening? What does it evoke? What questions does it raise?"
+        ]
+      },
+      {
+        kicker: "Attention",
+        title: "Become attentive.",
+        body: [
+          "The aim is not merely to collect information. It is to become attentive.",
+          "In the Qur’anic imagination, creation and human experience can function as āyāt—signs that point beyond themselves."
+        ]
+      },
+      {
+        kicker: "02 / Revelation",
+        title: "Look at it carefully through revelation.",
+        body: [
+          "Attention alone can produce many interpretations, so revelation provides the governing lens.",
+          "What does the Qur’an teach that is relevant to what I am observing? How did the Prophet ﷺ teach us to understand it? Which divine qualities, moral truths, promises, or warnings illuminate this experience?",
+          "Revelation does not erase the reality before you; it teaches you how to read it."
+        ]
+      },
+      {
+        kicker: "Intellectual Humility",
+        title: "Remain faithful to what revelation establishes.",
+        body: [
+          "Rain remains a physical event, but revelation also presents it as mercy, provision, revival, and a sign of resurrection.",
+          "Tafakkur is not permission to invent hidden meanings or claim knowledge of Allah’s specific intentions without evidence. The reflection must remain faithful to what revelation actually establishes."
+        ]
+      },
+      {
+        kicker: "03 / Recognition",
+        title: "Follow its meaning toward Allah.",
+        body: [
+          "Now the reflection moves from the sign to the One to whom it points.",
+          "What does this reveal about my dependence on Allah? Which of Allah’s names or attributes does revelation help me recognize here?",
+          "What does this teach me about creation, judgment, mercy, or return? What illusion about myself is being corrected?"
+        ]
+      },
+      {
+        kicker: "The Sign",
+        title: "The object is not the final destination.",
+        body: [
+          "A flower may lead you to contemplate beauty, proportion, generosity, fragility, and dependence—and from there toward recognition of Allah as Creator and Sustainer.",
+          "This is the theological center of tafakkur: creation is neither ignored nor treated as divine. It is received as a sign whose meaning directs the heart toward its Creator."
+        ]
+      },
+      {
+        kicker: "04 / Response",
+        title: "Let the reflection return as a sincere response.",
+        body: [
+          "Authentic tafakkur does not end with an interesting thought. What the mind recognizes should return through the heart, speech, and action.",
+          "Remembrance: saying Subḥān Allah with renewed awareness.",
+          "Gratitude: recognizing a gift and thanking Allah for it.",
+          "Repentance: noticing a contradiction between what you know and how you live.",
+          "Supplication, action, or trust: asking for guidance, repairing harm, caring for someone, using a blessing responsibly, or releasing anxiety after recognizing Allah’s wisdom and care."
+        ]
+      },
+      {
+        kicker: "Sincerity",
+        title: "The response must arise truthfully.",
+        body: [
+          "‘Sincere’ matters here. The response should arise truthfully from the encounter—not as a decorative moral added to make the reflection sound religious.",
+          "Reality → attentive observation → revelation → recognition of Allah → sincere transformation."
+        ]
+      },
+      {
+        kicker: "An Example",
+        title: "Dry earth receiving rain.",
+        body: [
+          "You observe a dry landscape receiving rain. Revelation teaches you to see water as mercy and the revival of dead earth as a sign of resurrection.",
+          "The reflection leads you toward Allah’s power, generosity, and ability to restore what appears lifeless.",
+          "It then returns as gratitude, hope, prayer, or a more responsible relationship with water and creation."
+        ],
+        footer: "Filed under: Tafakkur / Attention / Revelation / Response"
+      }
+    ]
+  },
+  {
     id: "0003",
     date: "15 July 2026",
     location: "Agadir, Morocco",
