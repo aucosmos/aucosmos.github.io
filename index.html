@@ -430,6 +430,56 @@
       line-height: 1.08;
     }
 
+    .question-feature {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 86px;
+      padding: clamp(30px, 4.8vw, 54px);
+      border: 1px solid rgba(216,189,158,.18);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(216,189,158,.16), transparent 30%),
+        radial-gradient(circle at 88% 78%, rgba(104,121,107,.15), transparent 28%),
+        rgba(255,255,255,.035);
+      box-shadow: 0 28px 86px rgba(0,0,0,.24);
+    }
+
+    .question-feature::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(234,223,210,.07);
+      border-radius: 22px;
+      pointer-events: none;
+    }
+
+    .question-feature__inner {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+    }
+
+    .question-feature h2 { max-width: 680px; }
+    .question-feature p { max-width: 650px; font-size: clamp(1.05rem, 1.9vw, 1.25rem); }
+
+    .question-feature__link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      margin-top: 14px;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold-strong), var(--gold));
+      color: #151210;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      font-size: .92rem;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .question-feature__link:hover { transform: translateY(-2px); box-shadow: 0 20px 46px rgba(0,0,0,.28); }
+
 
 
     .organ-days-feature {
@@ -743,6 +793,16 @@
           </div>
         </section>
 
+        <section class="question-feature" id="questions" aria-labelledby="questions-title">
+          <div class="question-feature__inner">
+            <div class="section-label">A quiet invitation</div>
+            <h2 id="questions-title">A question you are carrying</h2>
+            <p>Is there a question about Allah, faith, the mind, responsibility, or existence that you have been afraid to say out loud?</p>
+            <p>You may leave only the question. You do not need to explain yourself.</p>
+            <a class="question-feature__link" href="questions.html">Leave a question</a>
+          </div>
+        </section>
+
         <section id="xr-gateway" class="xr-gateway-section" aria-label="Aucosmos XR project">
           <a class="xr-gateway" href="xr.html" aria-label="Open the Aucosmos XR project page">
             <span class="xr-icon" aria-hidden="true">
@@ -826,7 +886,7 @@
 
     <footer id="connect">
       <div>© 2026 Aucosmos</div>
-      <div>Instagram: <a href="https://instagram.com/aucosmos" target="_blank" rel="noopener">@aucosmos</a></div>
+      <div><a href="questions.html">Anonymous questions</a> · <a href="privacy.html">Privacy</a> · Instagram: <a href="https://instagram.com/aucosmos" target="_blank" rel="noopener">@aucosmos</a></div>
     </footer>
   </div>
 </body>
