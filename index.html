@@ -459,6 +459,23 @@
       max-width: 760px;
     }
 
+    .question-feature__art {
+      position: absolute;
+      z-index: 1;
+      top: clamp(24px, 4vw, 42px);
+      right: clamp(24px, 4vw, 48px);
+      width: clamp(78px, 12vw, 120px);
+      color: var(--gold);
+      opacity: .48;
+      filter: drop-shadow(0 16px 32px rgba(216,189,158,.08));
+      pointer-events: none;
+    }
+
+    .question-feature__art svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .question-feature__art .halo { opacity: .18; }
+    .question-feature__art .trace { opacity: .82; }
+    .question-feature__art .echo { opacity: .26; }
+
     .question-feature h2 { max-width: 680px; }
     .question-feature p { max-width: 650px; font-size: clamp(1.05rem, 1.9vw, 1.25rem); }
 
@@ -691,6 +708,8 @@
       .button { width: 100%; min-width: unset; }
       .listen-card { width: 100%; }
       .content { padding-top: 70px; }
+      .question-feature__art { width: 68px; top: 22px; right: 22px; opacity: .42; }
+      .question-feature__inner { padding-top: 76px; }
     }
       @media (max-width: 780px) {
       .identity-card {
@@ -794,6 +813,16 @@
         </section>
 
         <section class="question-feature" id="questions" aria-labelledby="questions-title">
+          <div class="question-feature__art" aria-hidden="true">
+            <svg viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle class="halo" cx="90" cy="82" r="72" stroke="currentColor" stroke-width="0.8" />
+              <path class="echo" d="M55 63C61 36 85 21 112 29C139 37 151 66 141 91C132 113 111 119 99 133C94 139 91 146 90 155" stroke="currentColor" stroke-width="1" stroke-linecap="round" />
+              <path class="trace" d="M44 70C50 40 75 22 104 27C133 32 151 58 146 86C142 107 129 117 113 128C99 138 91 147 89 162" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+              <path d="M49 71C54 48 72 34 94 33" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity=".9" />
+              <circle cx="87" cy="190" r="4.5" fill="currentColor" opacity=".88" />
+              <circle cx="87" cy="190" r="12" stroke="currentColor" stroke-width="0.8" opacity=".2" />
+            </svg>
+          </div>
           <div class="question-feature__inner">
             <div class="section-label">A quiet invitation</div>
             <h2 id="questions-title">A question you are carrying</h2>
