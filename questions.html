@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave a Question — Aucosmos</title>
+  <meta name="description" content="Leave an anonymous question for Aucosmos. No name, email address, or account is requested." />
+  <style>
+    :root {
+      --bg: #080807;
+      --text: #eadfd2;
+      --muted: rgba(234,223,210,.74);
+      --soft: rgba(234,223,210,.54);
+      --gold: #d8bd9e;
+      --gold-strong: #f0d6b8;
+      --line: rgba(234,223,210,.13);
+      --danger: #f0b7a9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 82% 16%, rgba(216,189,158,.11), transparent 26%),
+        radial-gradient(circle at 16% 82%, rgba(104,121,107,.10), transparent 30%),
+        var(--bg);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px clamp(20px, 4.4vw, 68px);
+      border-bottom: 1px solid rgba(234,223,210,.08);
+      background: rgba(8,8,7,.64);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .logo { color: #ecdcca; font-size: clamp(1.55rem, 2.2vw, 2.2rem); }
+    .back {
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(216,189,158,.45);
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    main { width: min(100% - 36px, 880px); margin: 0 auto; padding: clamp(58px, 9vw, 110px) 0 80px; }
+    .eyebrow {
+      margin-bottom: 15px;
+      color: var(--gold);
+      font-family: Arial, sans-serif;
+      font-size: .75rem;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 760px;
+      margin-bottom: 25px;
+      color: #f0e4d6;
+      font-size: clamp(3rem, 7vw, 5.7rem);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: .98;
+    }
+    .intro { max-width: 650px; margin-bottom: 15px; color: var(--muted); font-size: clamp(1.08rem, 2vw, 1.3rem); }
+    .form-card {
+      position: relative;
+      overflow: hidden;
+      margin-top: 44px;
+      padding: clamp(26px, 5vw, 48px);
+      border: 1px solid rgba(216,189,158,.18);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at top left, rgba(216,189,158,.12), transparent 32%),
+        rgba(255,255,255,.038);
+      box-shadow: 0 30px 90px rgba(0,0,0,.28);
+    }
+    .form-card::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(234,223,210,.065);
+      border-radius: 22px;
+      pointer-events: none;
+    }
+    form { position: relative; z-index: 1; }
+    label { display: block; margin-bottom: 12px; color: #f0e4d6; font-size: 1.15rem; }
+    textarea {
+      width: 100%;
+      min-height: 210px;
+      resize: vertical;
+      padding: 20px;
+      border: 1px solid rgba(216,189,158,.22);
+      border-radius: 16px;
+      outline: none;
+      color: #f3e8dc;
+      background: rgba(5,5,4,.55);
+      font: 1.05rem/1.65 Georgia, "Times New Roman", serif;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    textarea::placeholder { color: rgba(234,223,210,.36); }
+    textarea:focus { border-color: rgba(240,214,184,.62); box-shadow: 0 0 0 3px rgba(216,189,158,.08); }
+    .form-meta { display: flex; justify-content: space-between; gap: 16px; margin-top: 10px; color: var(--soft); font-family: Arial, sans-serif; font-size: .78rem; }
+    button {
+      min-height: 50px;
+      margin-top: 24px;
+      padding: 0 24px;
+      border: 0;
+      border-radius: 999px;
+      color: #151210;
+      background: linear-gradient(135deg, var(--gold-strong), var(--gold));
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-size: .92rem;
+      font-weight: 700;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    button:hover { transform: translateY(-2px); }
+    button:disabled { cursor: wait; opacity: .62; transform: none; }
+    .status { min-height: 28px; margin-top: 18px; color: var(--muted); font-family: Arial, sans-serif; font-size: .9rem; }
+    .status.error { color: var(--danger); }
+    .privacy-note {
+      max-width: 690px;
+      margin: 30px auto 0;
+      color: var(--soft);
+      font-family: Arial, sans-serif;
+      font-size: .86rem;
+      line-height: 1.65;
+    }
+    .privacy-note p { margin-bottom: 12px; }
+    .privacy-note a { color: var(--gold-strong); border-bottom: 1px solid rgba(216,189,158,.45); }
+    .honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    footer {
+      width: min(100% - 36px, 880px);
+      margin: 0 auto;
+      padding: 28px 0 46px;
+      border-top: 1px solid var(--line);
+      color: var(--soft);
+      font-family: Arial, sans-serif;
+      font-size: .85rem;
+    }
+    footer a { border-bottom: 1px solid rgba(216,189,158,.45); }
+    @media (max-width: 560px) {
+      .topbar { align-items: flex-start; }
+      main { width: min(100% - 28px, 880px); padding-top: 52px; }
+      .form-card { border-radius: 24px; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="index.html">aucosmos</a>
+    <a class="back" href="index.html">Return home</a>
+  </header>
+
+  <main>
+    <div class="eyebrow">A quiet invitation</div>
+    <h1>A question you are carrying</h1>
+    <p class="intro">Is there a question about Allah, faith, the mind, responsibility, or existence that you have been afraid to say out loud?</p>
+    <p class="intro">You may leave only the question. You do not need to explain yourself.</p>
+
+    <section class="form-card" aria-label="Anonymous question form">
+      <form id="question-form" action="https://formspree.io/f/xvkpqzon" method="POST">
+        <label for="question">What question are you carrying?</label>
+        <textarea id="question" name="question" maxlength="1500" required placeholder="Leave your question here…" aria-describedby="question-guidance character-count"></textarea>
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input id="website" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <div class="form-meta">
+          <span id="question-guidance">Please avoid identifying details.</span>
+          <span id="character-count">0 / 1500</span>
+        </div>
+        <button type="submit">Leave the question</button>
+        <p class="status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <div class="privacy-note">
+      <p>This is optional. AUCOSMOS does not ask for your name, email address, or account. Please avoid including names, locations, or details that could identify you or someone else.</p>
+      <p>Questions may inspire future Moments of Tafakkur. Before anything is quoted or shared, identifying details will be removed. Submitting a question does not guarantee a personal response or publication.</p>
+      <p>This space is not intended for urgent help, private counselling, or religious rulings. Submissions are processed by Formspree, an external form service that may process technical information needed for security and delivery. <a href="privacy.html">Read the privacy note.</a></p>
+    </div>
+  </main>
+
+  <footer>© 2026 Aucosmos · <a href="privacy.html">Privacy</a> · <a href="https://instagram.com/aucosmos" target="_blank" rel="noopener">Instagram</a></footer>
+
+  <script>
+    const form = document.getElementById("question-form");
+    const question = document.getElementById("question");
+    const counter = document.getElementById("character-count");
+    const status = document.getElementById("form-status");
+    const button = form.querySelector("button");
+
+    question.addEventListener("input", () => {
+      counter.textContent = `${question.value.length} / 1500`;
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      status.className = "status";
+
+      button.disabled = true;
+      status.textContent = "Leaving your question…";
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" }
+        });
+
+        if (!response.ok) throw new Error("Submission failed");
+
+        form.reset();
+        counter.textContent = "0 / 1500";
+        status.textContent = "Your question has been received. Thank you for trusting this space.";
+      } catch (error) {
+        status.textContent = "Your question could not be sent. Please try again in a moment.";
+        status.classList.add("error");
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
