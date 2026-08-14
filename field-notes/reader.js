@@ -8,9 +8,9 @@
   const stage = document.querySelector(".magazine-stage");
   const prevButtons = document.querySelectorAll("[data-prev]");
   const nextButtons = document.querySelectorAll("[data-next]");
-  const latestLink = document.querySelector("[data-open-latest]");
+  const initialIssueId = document.body.dataset.initialIssue;
 
-  let issue = issues[0];
+  let issue = issues.find((entry) => entry.id === initialIssueId) || issues[0];
   let pageIndex = 0;
   let touchStartX = 0;
 
@@ -89,7 +89,7 @@
     archive.innerHTML = issues
       .map(function (entry) {
         return [
-          '<a class="issue-card" href="#reader" data-issue-card="' + entry.id + '">',
+          '<a class="issue-card" href="/field-notes/' + entry.id + '/#reader">',
           '<p class="issue-meta">Issue ' + entry.id + " / " + entry.date + "</p>",
           "<h3>" + entry.title + "</h3>",
           '<p class="issue-meta">' + entry.tags.join(" / ") + "</p>",
@@ -103,17 +103,7 @@
   nextButtons.forEach((button) => button.addEventListener("click", next));
 
   issueSelect.addEventListener("change", function (event) {
-    chooseIssue(event.target.value);
-  });
-
-  archive.addEventListener("click", function (event) {
-    const card = event.target.closest("[data-issue-card]");
-    if (!card) return;
-    chooseIssue(card.getAttribute("data-issue-card"));
-  });
-
-  latestLink.addEventListener("click", function () {
-    chooseIssue(issues[0].id);
+    window.location.assign("/field-notes/" + event.target.value + "/#reader");
   });
 
   stage.addEventListener("touchstart", function (event) {
@@ -135,5 +125,5 @@
   window.addEventListener("resize", render);
 
   renderArchive();
-  chooseIssue(issues[0].id);
+  chooseIssue(initialIssueId);
 })();
