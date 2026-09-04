@@ -211,6 +211,106 @@
     p { color: var(--muted); font-size: 1.05rem; margin-bottom: 16px; }
     .soft-box { background: rgba(255,255,255,.045); border: 1px solid var(--line); border-radius: 28px; padding: clamp(26px, 4vw, 42px); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
 
+    .episode-feature {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 86px;
+      padding: clamp(28px, 4.8vw, 54px);
+      border: 1px solid rgba(216,189,158,.18);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(216,189,158,.16), transparent 32%),
+        radial-gradient(circle at 88% 78%, rgba(111,82,67,.18), transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,.052), rgba(255,255,255,.016));
+      box-shadow: 0 28px 86px rgba(0,0,0,.25);
+    }
+
+    .episode-feature::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(234,223,210,.07);
+      border-radius: 22px;
+      pointer-events: none;
+    }
+
+    .episode-feature__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(240px, .72fr) minmax(0, 1.28fr);
+      gap: clamp(28px, 5vw, 58px);
+      align-items: center;
+    }
+
+    .episode-feature h2 {
+      color: #f0e4d6;
+      margin-bottom: 18px;
+    }
+
+    .episode-feature h2 span {
+      display: block;
+      color: var(--gold-strong);
+    }
+
+    .episode-feature__text {
+      max-width: 430px;
+      margin-bottom: 0;
+      font-size: clamp(1.03rem, 1.7vw, 1.2rem);
+    }
+
+    .episode-feature__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .episode-feature__link {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      border: 1px solid rgba(216,189,158,.25);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      color: #f0e4d6;
+      font-family: Arial, sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      transition: transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+
+    .episode-feature__link--primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--gold-strong), var(--gold));
+      color: #151210;
+      box-shadow: 0 18px 40px rgba(0,0,0,.23);
+    }
+
+    .episode-feature__link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(216,189,158,.48);
+      background-color: rgba(255,255,255,.065);
+    }
+
+    .episode-feature__player {
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      border: 1px solid rgba(216,189,158,.2);
+      border-radius: 20px;
+      background: #050505;
+      box-shadow: 0 24px 65px rgba(0,0,0,.34);
+    }
+
+    .episode-feature__player iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
     .xr-gateway-section {
       margin-bottom: 74px;
     }
@@ -589,6 +689,8 @@
       .top-icons { justify-self: start; }
       .hero { background-position: 58% center; }
       .hero-content { padding-right: 20px; }
+      .episode-feature__inner { grid-template-columns: 1fr; }
+      .episode-feature__copy { max-width: 620px; }
       .daily-feature__inner { grid-template-columns: 1fr; }
       .daily-feature__issue { min-height: 240px; }
       .xr-gateway-section {
@@ -708,6 +810,8 @@
       .button { width: 100%; min-width: unset; }
       .listen-card { width: 100%; }
       .content { padding-top: 70px; }
+      .episode-feature__actions { flex-direction: column; }
+      .episode-feature__link { width: 100%; }
       .question-feature__art { width: 68px; top: 22px; right: 22px; opacity: .42; }
       .question-feature__inner { padding-top: 76px; }
     }
@@ -794,6 +898,29 @@
 
     <main>
       <div class="content">
+        <section class="episode-feature" id="latest-episode" aria-labelledby="latest-episode-title">
+          <div class="episode-feature__inner">
+            <div class="episode-feature__copy">
+              <div class="section-label">New episode</div>
+              <h2 id="latest-episode-title">Moments of Tafakkur <span>— Death</span></h2>
+              <p class="episode-feature__text">A moment to pause and reflect on death.</p>
+              <div class="episode-feature__actions">
+                <a class="episode-feature__link episode-feature__link--primary" href="https://youtu.be/LhZBDGixjGI?si=u1X1Z6NBeaVIjmnz" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">↗</span></a>
+                <a class="episode-feature__link" href="https://open.spotify.com/episode/1prPgibfaXGnAvhjyXedfo?si=5A1pcwUxSRafnTKFkjdl6w" target="_blank" rel="noopener">Listen on Spotify <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+            <div class="episode-feature__player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/LhZBDGixjGI"
+                title="Moments of Tafakkur — Death"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+        </section>
+
         <section class="daily-feature" id="field-notes" aria-label="AUCOSMOS Field Notes magazine">
           <div class="daily-feature__inner">
             <div>
