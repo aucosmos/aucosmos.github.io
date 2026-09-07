@@ -412,6 +412,67 @@
     footer { max-width: 1160px; margin: 0 auto; padding: 30px 20px 52px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-family: Arial, sans-serif; font-size: .9rem; color: var(--soft); }
     footer a { border-bottom: 1px solid rgba(216,189,158,.55); }
 
+    .discord-community {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      align-items: center;
+      gap: clamp(24px, 5vw, 60px);
+      margin-bottom: 0;
+      padding: clamp(30px, 5vw, 60px);
+      border: 1px solid rgba(243,236,220,.22);
+      border-radius: 30px;
+      background: #596557;
+      color: #f3ecdc;
+    }
+
+    .discord-community::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 14px;
+      border: 1px solid rgba(243,236,220,.14);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .discord-community .section-label { color: #f3ecdc; }
+    .discord-community h2 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+    .discord-community__text { max-width: 530px; color: #f3ecdc; font-size: 1.12rem; }
+    .discord-community__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      min-height: 50px;
+      margin-top: 14px;
+      padding: 13px 24px;
+      border: 0;
+      border-radius: 999px;
+      background: #f3ecdc;
+      color: #354332;
+      font-family: Arial, sans-serif;
+      font-size: .94rem;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+      transition: background .2s ease, transform .2s ease;
+    }
+    a.discord-community__button:hover { background: #fff8e9; transform: translateY(-2px); }
+    .discord-community__button:focus-visible { outline: 3px solid #f3ecdc; outline-offset: 5px; }
+    .discord-community__art { display: block; width: 100%; max-width: 220px; height: auto; pointer-events: none; }
+    @media (max-width: 680px) {
+      .discord-community { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      .discord-community__art { grid-row: 1; width: 112px; }
+      .discord-community__button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .discord-community__button { transition: none; }
+      a.discord-community__button:hover { transform: none; }
+    }
+
     .daily-feature {
       position: relative;
       overflow: hidden;
@@ -1004,6 +1065,21 @@
             <p class="quote">“The most beloved deeds to Allah are those that are consistent, even if they are small.”</p>
             <p>Prophet Muhammad ﷺ<br />Sahih al-Bukhari 6464; Sahih Muslim 783</p>
           </div>
+        </section>
+        <section class="discord-community" id="community" aria-labelledby="community-title">
+          <div>
+            <div class="section-label">AUCOSMOS community · Discord</div>
+            <h2 id="community-title">Join the Cosmos</h2>
+            <p class="discord-community__text">A space to reflect, learn, and build together. Bring your questions, share what you’re making, or simply come explore.</p>
+            <a class="discord-community__button" href="https://discord.gg/6BW242uF" target="_blank" rel="noopener noreferrer">Become a Cosmonaut <span aria-hidden="true">→</span></a>
+          </div>
+          <svg class="discord-community__art" viewBox="0 0 240 260" fill="none" aria-hidden="true" focusable="false">
+            <path d="M57 231V99a63 63 0 0 1 126 0v132" stroke="#f3ecdc" stroke-opacity=".48" />
+            <path d="M70 231V99a50 50 0 0 1 100 0v132" stroke="#f3ecdc" stroke-opacity=".18" />
+            <ellipse cx="120" cy="133" rx="111" ry="42" transform="rotate(-24 120 133)" stroke="#f3ecdc" stroke-opacity=".5" />
+            <circle cx="209" cy="91" r="10" fill="#c67752" />
+            <path d="M39 232h162M120 65v12M114 71h12" stroke="#f3ecdc" stroke-opacity=".48" />
+          </svg>
         </section>
       </div>
     </main>
